@@ -12,7 +12,7 @@ const t = {
     hero: {
       greeting: "Hola, soy",
       role: "Fullstack Developer",
-      description: "Desarrollo aplicaciones web robustas y escalables con +3 años de experiencia profesional. Stack principal: JavaScript & TypeScript, React, Node.js, Java & Spring Boot. Inglés C1.",
+      description: "Desarrollo aplicaciones web robustas y escalables con +3 años de experiencia profesional. Stack principal: JavaScript & TypeScript, React, Node.js, Java & Spring Boot, SQL, AWS. Inglés C1.",
       cta: "Ver proyectos",
       ctaContact: "Contactarme",
       stats: [
