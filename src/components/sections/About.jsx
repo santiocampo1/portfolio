@@ -1,5 +1,5 @@
 import Reveal from "../ui/Reveal";
-import PHOTO from "../../assets/photo";
+import PHOTO from "../../assets/photo.jpg";
 import { techStack } from "../../constants/data";
 
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
@@ -15,7 +15,6 @@ export default function About({ t }) {
           <h2 className="section-title">{t.about.title}</h2>
         </Reveal>
 
-        {/* Top: photo + bio side by side */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "200px 1fr",
@@ -31,9 +30,8 @@ export default function About({ t }) {
                 width: "100%",
                 aspectRatio: "3 / 4",
                 overflow: "hidden",
-                borderRadius: "6px",
-                border: "1px solid var(--border)",
-                background: "var(--bg-subtle)",
+                borderRadius: "16px",
+                display: "flex",
               }}>
                 <img
                   src={PHOTO}
@@ -42,8 +40,10 @@ export default function About({ t }) {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: "center top",
+                    objectPosition: "center 55%",
                     display: "block",
+                    border: "none",
+                    outline: "none",
                     transition: "transform 0.5s ease",
                   }}
                   onMouseEnter={e => e.currentTarget.style.transform = "scale(1.03)"}
@@ -51,7 +51,6 @@ export default function About({ t }) {
                 />
               </div>
 
-              {/* Name tag below photo */}
               <div style={{ marginTop: "0.85rem" }}>
                 <p style={{ ...sans, fontWeight: 600, fontSize: "0.85rem", color: "var(--text)", lineHeight: 1.3 }}>
                   Santiago Ocampo
@@ -79,7 +78,7 @@ export default function About({ t }) {
           </div>
         </div>
 
-        {/* Stack - debajo, full width */}
+        {/* Stack */}
         <Reveal delay={0.15}>
           <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}>
             <p style={{ ...mono, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-4)", marginBottom: "1.25rem" }}>
