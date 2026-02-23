@@ -1,6 +1,7 @@
 import Reveal from "../ui/Reveal";
-import PHOTO from "../../assets/photo";
 import { techStack } from "../../constants/data";
+
+const PHOTO = "/../src/public/photo.jpg";
 
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
@@ -31,9 +32,8 @@ export default function About({ t }) {
                 width: "100%",
                 aspectRatio: "3 / 4",
                 overflow: "hidden",
-                borderRadius: "6px",
-                border: "1px solid var(--border)",
-                background: "var(--bg-subtle)",
+                borderRadius: "16px",
+                lineHeight: 0,
               }}>
                 <img
                   src={PHOTO}
@@ -42,7 +42,7 @@ export default function About({ t }) {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: "center top",
+                    objectPosition: "center 25%",
                     display: "block",
                     transition: "transform 0.5s ease",
                   }}
@@ -79,7 +79,7 @@ export default function About({ t }) {
           </div>
         </div>
 
-        {/* Stack - debajo, full width */}
+        {/* Stack */}
         <Reveal delay={0.15}>
           <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}>
             <p style={{ ...mono, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-4)", marginBottom: "1.25rem" }}>
