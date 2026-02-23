@@ -5,7 +5,7 @@ import translations from "./constants/translations";
 import useScrollSpy from "./hooks/useScrollSpy";
 
 import Sidebar from "./components/layout/Sidebar";
-import Topbar from "./components/layout/Topbar";
+import Topbar from "./components/layout/TopBar";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
 import Projects from "./components/sections/Projects";
@@ -25,7 +25,7 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      <Topbar t={t} lang={lang} setLang={setLang} active={active} go={go} />
+      <TopbaB t={t} lang={lang} setLang={setLang} active={active} go={go} />
 
       <div className="app-shell">
         <Sidebar t={t} lang={lang} setLang={setLang} active={active} go={go} />
