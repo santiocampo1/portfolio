@@ -25,7 +25,7 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      <TopbaB t={t} lang={lang} setLang={setLang} active={active} go={go} />
+      <Topbar t={t} lang={lang} setLang={setLang} active={active} go={go} />
 
       <div className="app-shell">
         <Sidebar t={t} lang={lang} setLang={setLang} active={active} go={go} />
