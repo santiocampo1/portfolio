@@ -6,14 +6,6 @@ const mono = { fontFamily: "'DM Mono', monospace" };
 export default function Hero({ t, go }) {
   const visitors = useVisitorCount();
 
-  const stats = [
-    ...t.hero.stats,
-    {
-      value: visitors !== null ? visitors.toLocaleString() : "…",
-      label: t.hero.visitors,
-    },
-  ];
-
   return (
     <section id="hero" className="section">
       <div className="section-inner" style={{ maxWidth: 680 }}>
@@ -40,17 +32,13 @@ export default function Hero({ t, go }) {
         <p style={{
           ...mono, fontSize: "0.73rem", color: "var(--text-3)",
           letterSpacing: "0.12em", textTransform: "uppercase",
-          marginBottom: "2rem",
-          paddingBottom: "2rem",
+          marginBottom: "2rem", paddingBottom: "2rem",
           borderBottom: "1px solid var(--border)",
         }}>
           {t.hero.role}
         </p>
 
-        <p style={{
-          fontSize: "0.95rem", lineHeight: 1.85,
-          color: "var(--text-2)", marginBottom: "2rem",
-        }}>
+        <p style={{ fontSize: "0.95rem", lineHeight: 1.85, color: "var(--text-2)", marginBottom: "2rem" }}>
           {t.hero.description}
         </p>
 
@@ -73,14 +61,15 @@ export default function Hero({ t, go }) {
           </button>
         </div>
 
-        {/* Stats — incluye contador de visitas */}
+        {/* Stats grid — solo los 4 originales */}
         <div className="hero-stats" style={{
           display: "grid",
-          gridTemplateColumns: `repeat(${stats.length}, 1fr)`,
+          gridTemplateColumns: `repeat(${t.hero.stats.length}, 1fr)`,
           borderTop: "1px solid var(--border)",
           borderLeft: "1px solid var(--border)",
+          marginBottom: "1rem",
         }}>
-          {stats.map(({ value, label }, i) => (
+          {t.hero.stats.map(({ value, label }, i) => (
             <div key={i} style={{
               padding: "1.1rem 1rem",
               borderRight: "1px solid var(--border)",
@@ -95,6 +84,36 @@ export default function Hero({ t, go }) {
             </div>
           ))}
         </div>
+
+        {/* Dato curioso — contador de visitas */}
+        {visitors !== null && (
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            marginTop: "0.85rem",
+            background: "var(--accent-bg)",
+            border: "1px solid #c7d7fa",
+            borderRadius: "6px",
+            padding: "6px 12px",
+          }}>
+            <span style={{ fontSize: "0.7rem" }}>✦</span>
+            <p style={{
+              ...mono,
+              fontSize: "0.62rem",
+              color: "var(--accent)",
+              letterSpacing: "0.04em",
+              lineHeight: 1,
+              margin: 0,
+            }}>
+              {t.visitors}{" "}
+              <span style={{ fontWeight: 700 }}>
+                {typeof visitors === "number" ? visitors.toLocaleString() : visitors}
+              </span>{" "}
+              {t.visitorsUnit}
+            </p>
+          </div>
+        )}
 
       </div>
     </section>

@@ -1,6 +1,7 @@
 const t = {
   es: {
-    visitors: "Dato curioso: este sitio ha sido visitado",
+    visitors: "Dato curioso: este sitio fue visitado",
+    visitorsUnit: "veces",
     nav: {
       hero: "Inicio",
       about: "Sobre mí",
@@ -154,6 +155,7 @@ const t = {
 
   en: {
     visitors: "Fun fact: this site has been visited",
+    visitorsUnit: "times",
     nav: {
       hero: "Home",
       about: "About",
