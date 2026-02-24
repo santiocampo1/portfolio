@@ -8,6 +8,7 @@ const t = {
       education: "Educación",
       contact: "Contacto",
     },
+    nav_label: "Navegación",
     available: "Disponible para trabajar",
     hero: {
       greeting: "Hola, soy",
@@ -159,6 +160,7 @@ const t = {
       education: "Education",
       contact: "Contact",
     },
+    nav_label: "Navigation",
     available: "Available for work",
     hero: {
       greeting: "Hi, I'm",

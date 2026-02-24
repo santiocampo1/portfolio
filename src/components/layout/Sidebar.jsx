@@ -20,7 +20,7 @@ export default function Sidebar({ t, lang, setLang, active, go }) {
 
             {/* Nav */}
             <nav className="sidebar-nav">
-                <p className="sidebar-section-label">Navegación</p>
+                <p className="sidebar-section-label">{t.nav_label}</p>
                 {NAV_ITEMS.map(({ id, icon, labelKey }) => (
                     <div
                         key={id}
