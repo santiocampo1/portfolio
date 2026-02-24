@@ -6,6 +6,7 @@ const NAV_ITEMS = [
     { id: "projects", icon: "⬡", labelKey: "projects" },
     { id: "experience", icon: "◈", labelKey: "experience" },
     { id: "education", icon: "◉", labelKey: "education" },
+    { id: "guestbook", icon: "✎", labelKey: "guestbook" },
     { id: "contact", icon: "◌", labelKey: "contact" },
 ];
 

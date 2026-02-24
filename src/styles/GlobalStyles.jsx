@@ -499,6 +499,9 @@ const css = `
     /* Education */
     .cert-grid { grid-template-columns: 1fr !important; }
 
+    /* Guestbook */
+    .guestbook-form-top { grid-template-columns: 1fr !important; }
+
     /* CV Button */
     .cv-btn-label { display: none; }
     .cv-btn {

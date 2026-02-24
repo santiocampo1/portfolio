@@ -12,6 +12,7 @@ import Projects from "./components/sections/Projects";
 import Experience from "./components/sections/Experience";
 import Education from "./components/sections/Education";
 import Contact from "./components/sections/Contact";
+import Guestbook from "./components/sections/Guestbook";
 import CVButton from "./components/ui/CVButton";
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
           <Projects t={t} />
           <Experience t={t} />
           <Education t={t} />
+          <Guestbook t={t} lang={lang} />
           <Contact t={t} />
 
           <footer style={{

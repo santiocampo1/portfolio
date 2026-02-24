@@ -1,5 +1,16 @@
 const t = {
   es: {
+    guestbook: {
+      eyebrow: "Libro de visitas",
+      title: "Dejá tu mensaje",
+      description: "Si llegaste hasta acá, me gustaría saber quién sos. Dejá un saludo, feedback, o simplemente hola.",
+      labelName: "Nombre", labelCountry: "País", labelMessage: "Mensaje",
+      placeholderName: "Tu nombre", placeholderCountry: "¿De dónde sos?",
+      placeholderMessage: "Dejá tu mensaje...",
+      submit: "Enviar →", sending: "Enviando...",
+      successMsg: "¡Mensaje enviado!", errorMsg: "Algo salió mal, intentá de nuevo.",
+      loading: "Cargando...", empty: "Sé el primero en dejar un mensaje.",
+    },
     visitors: "Dato curioso: este sitio fue visitado",
     visitorsUnit: "veces",
     nav: {
@@ -8,6 +19,7 @@ const t = {
       projects: "Proyectos",
       experience: "Experiencia",
       education: "Educación",
+      guestbook: "Libro de visitas",
       contact: "Contacto",
     },
     nav_label: "Navegación",
@@ -154,6 +166,17 @@ const t = {
   },
 
   en: {
+    guestbook: {
+      eyebrow: "Guestbook",
+      title: "Leave a message",
+      description: "If you made it this far, I'd love to know who you are. Drop a hello, some feedback, or anything you'd like.",
+      labelName: "Name", labelCountry: "Country", labelMessage: "Message",
+      placeholderName: "Your name", placeholderCountry: "Where are you from?",
+      placeholderMessage: "Leave your message...",
+      submit: "Send →", sending: "Sending...",
+      successMsg: "Message sent!", errorMsg: "Something went wrong, please try again.",
+      loading: "Loading...", empty: "Be the first to leave a message.",
+    },
     visitors: "Fun fact: this site has been visited",
     visitorsUnit: "times",
     nav: {
@@ -162,6 +185,7 @@ const t = {
       projects: "Projects",
       experience: "Experience",
       education: "Education",
+      guestbook: "Guestbook",
       contact: "Contact",
     },
     nav_label: "Navigation",
