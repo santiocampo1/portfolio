@@ -79,7 +79,7 @@ const t = {
           company: "Taktiful",
           desc: "Visualizador 3D interactivo para previsualización de impresiones gráficas con modelos de Machine Learning.",
           tech: ["React", "Three.js", "ML", "PHP", "MySQL"],
-          type: "Fukl Stack",
+          type: "Full Stack",
         },
         {
           name: "Taktify",
