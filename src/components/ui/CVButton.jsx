@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const mono = { fontFamily: "'DM Mono', monospace" };
 
@@ -10,18 +10,29 @@ const CV_FILES = {
 export default function CVButton({ lang }) {
     const { file, label } = CV_FILES[lang] || CV_FILES.es;
     const [bottom, setBottom] = useState("1.75rem");
+    const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
         const footer = document.querySelector("footer");
         if (!footer) return;
 
+        const isMobile = () => window.innerWidth <= 900;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    const visible = entry.intersectionRect.height;
-                    setBottom(`calc(${visible}px + 1rem)`);
+                if (isMobile()) {
+                    // Mobile: ocultar cuando el footer es visible
+                    setHidden(entry.isIntersecting);
+                    setBottom("1.25rem");
                 } else {
-                    setBottom("1.75rem");
+                    // Desktop: subir el botón suavemente
+                    setHidden(false);
+                    if (entry.isIntersecting) {
+                        const visible = entry.intersectionRect.height;
+                        setBottom(`calc(${visible}px + 1rem)`);
+                    } else {
+                        setBottom("1.75rem");
+                    }
                 }
             },
             { threshold: Array.from({ length: 101 }, (_, i) => i / 100) }
@@ -51,7 +62,9 @@ export default function CVButton({ lang }) {
                 borderRadius: "8px",
                 boxShadow: "0 4px 16px rgba(0,0,0,0.14)",
                 textDecoration: "none",
-                transition: "background 0.2s, transform 0.2s, box-shadow 0.2s, bottom 0.25s ease",
+                transition: "background 0.2s, transform 0.2s, box-shadow 0.2s, bottom 0.25s ease, opacity 0.2s",
+                opacity: hidden ? 0 : 1,
+                pointerEvents: hidden ? "none" : "auto",
                 ...mono,
                 fontSize: "0.68rem",
                 letterSpacing: "0.07em",
