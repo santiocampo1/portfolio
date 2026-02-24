@@ -1,7 +1,19 @@
+import useVisitorCount from "../../hooks/useVisitorsCount";
+
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
 export default function Hero({ t, go }) {
+  const visitors = useVisitorCount();
+
+  const stats = [
+    ...t.hero.stats,
+    {
+      value: visitors !== null ? visitors.toLocaleString() : "…",
+      label: t.hero.visitors,
+    },
+  ];
+
   return (
     <section id="hero" className="section">
       <div className="section-inner" style={{ maxWidth: 680 }}>
@@ -22,7 +34,7 @@ export default function Hero({ t, go }) {
           letterSpacing: "-0.04em", lineHeight: 1.0,
           color: "var(--text)", marginBottom: "1rem",
         }}>
-          Santiago Ocampo
+          Santiago<br />Ocampo
         </h1>
 
         <p style={{
@@ -61,20 +73,25 @@ export default function Hero({ t, go }) {
           </button>
         </div>
 
-        {/* Stats */}
+        {/* Stats — incluye contador de visitas */}
         <div className="hero-stats" style={{
-          display: "grid", gridTemplateColumns: "repeat(4,1fr)",
+          display: "grid",
+          gridTemplateColumns: `repeat(${stats.length}, 1fr)`,
           borderTop: "1px solid var(--border)",
           borderLeft: "1px solid var(--border)",
         }}>
-          {t.hero.stats.map(({ value, label }, i) => (
+          {stats.map(({ value, label }, i) => (
             <div key={i} style={{
               padding: "1.1rem 1rem",
               borderRight: "1px solid var(--border)",
               borderBottom: "1px solid var(--border)",
             }}>
-              <div style={{ ...sans, fontWeight: 700, fontSize: "1.4rem", color: "var(--text)", letterSpacing: "-0.03em", lineHeight: 1 }}>{value}</div>
-              <div style={{ ...mono, fontSize: "0.58rem", color: "var(--text-4)", marginTop: "5px", letterSpacing: "0.04em", lineHeight: 1.4 }}>{label}</div>
+              <div style={{ ...sans, fontWeight: 700, fontSize: "1.4rem", color: "var(--text)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+                {value}
+              </div>
+              <div style={{ ...mono, fontSize: "0.58rem", color: "var(--text-4)", marginTop: "5px", letterSpacing: "0.04em", lineHeight: 1.4 }}>
+                {label}
+              </div>
             </div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 const t = {
   es: {
+    visitors: "Dato curioso: este sitio ha sido visitado",
     nav: {
       hero: "Inicio",
       about: "Sobre mí",
@@ -152,6 +153,7 @@ const t = {
   },
 
   en: {
+    visitors: "Fun fact: this site has been visited",
     nav: {
       hero: "Home",
       about: "About",
