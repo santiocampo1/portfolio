@@ -12,6 +12,7 @@ import Projects from "./components/sections/Projects";
 import Experience from "./components/sections/Experience";
 import Education from "./components/sections/Education";
 import Contact from "./components/sections/Contact";
+import CVButton from "./components/ui/CVButton";
 
 export default function App() {
   const [lang, setLang] = useState("es");
@@ -56,6 +57,7 @@ export default function App() {
           </footer>
         </main>
       </div>
+      <CVButton lang={lang} />
     </>
   );
 }

@@ -187,6 +187,7 @@ const css = `
   .section-inner {
     max-width: 840px;
     width: 100%;
+    margin: 0 auto;
   }
 
   .section-eyebrow {
@@ -381,6 +382,37 @@ const css = `
     50%       { opacity: 0.35; }
   }
 
+  /* ─── CV Button tooltip ─── */
+  .cv-btn { position: relative; }
+  .cv-btn-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--text);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .cv-btn-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: var(--text);
+  }
+  .cv-btn:hover .cv-btn-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+
   /* ─── Mobile topbar ─── */
   .topbar {
     display: none;
@@ -467,6 +499,20 @@ const css = `
 
     /* Education */
     .cert-grid { grid-template-columns: 1fr !important; }
+
+    /* CV Button */
+    .cv-btn-label { display: none; }
+    .cv-btn {
+      padding: 12px !important;
+      border-radius: 50% !important;
+      bottom: 1.25rem !important;
+      right: 1.25rem !important;
+    }
+    .cv-btn:hover .cv-btn-tooltip,
+    .cv-btn:focus .cv-btn-tooltip {
+      opacity: 1 !important;
+      transform: translateX(-50%) translateY(-4px) !important;
+    }
 
     /* Contact */
     .contact-cols {
