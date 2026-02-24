@@ -28,7 +28,7 @@ const t = {
       title: "Fullstack Developer orientado al producto",
       bio: [
         "Soy un Fullstack Developer con más de 3 años de experiencia profesional en proyectos individuales y colaborativos. Me adapto rápido a nuevas tecnologías y aprendo de manera autodidacta.",
-        "Trabajo cómodamente en toda la stack: desde el diseño de la base de datos y la arquitectura del backend, hasta la implementación de interfaces de usuario. Manejo metodologías ágiles SCRUM y tengo experiencia en pipelines de CI/CD.",
+        "Trabajo cómodamente en todo el stack: desde el diseño de la base de datos y la arquitectura del backend, hasta la implementación de interfaces de usuario. Manejo metodologías ágiles SCRUM y tengo experiencia en pipelines de CI/CD.",
         "Mi nivel de inglés es C1 — puedo comunicarme con fluidez en equipos internacionales, tanto oral como por escrito.",
       ],
       stackTitle: "Tecnologías que he utilizado",
