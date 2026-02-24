@@ -30,7 +30,7 @@ const t = {
         "Trabajo cómodamente en toda la stack: desde el diseño de la base de datos y la arquitectura del backend, hasta la implementación de interfaces de usuario. Manejo metodologías ágiles SCRUM y tengo experiencia en pipelines de CI/CD.",
         "Mi nivel de inglés es C1 — puedo comunicarme con fluidez en equipos internacionales, tanto oral como por escrito.",
       ],
-      stackTitle: "Tecnologías que uso",
+      stackTitle: "Tecnologías que he utilizado",
       categories: {
         frontend: "Frontend",
         backend: "Backend",
@@ -40,7 +40,7 @@ const t = {
     },
     projects: {
       eyebrow: "Proyectos",
-      title: "Cosas que construí",
+      title: "Algunas cosas que he construido",
       colName: "Proyecto",
       colTech: "Stack",
       colType: "Tipo",
@@ -74,7 +74,7 @@ const t = {
           type: "Full Stack",
         },
         {
-          name: "Sistemas de Pago Internacional",
+          name: "Sistema de Pagos Internacionales",
           company: "Bizland Tech",
           desc: "Backend para transacciones internacionales con Western Union y Pago Fácil. Seguridad en manejo de datos y validación.",
           tech: ["Java", "Spring Boot", "MySQL", "AWS"],
@@ -85,6 +85,7 @@ const t = {
     experience: {
       eyebrow: "Experiencia",
       title: "Trayectoria profesional",
+      current: "Actual",
       items: [
         {
           role: "SSr Fullstack Developer",
@@ -138,7 +139,7 @@ const t = {
     contact: {
       eyebrow: "Contacto",
       title: "¿Hablamos?",
-      description: "Estoy disponible para nuevas oportunidades, proyectos freelance o colaboraciones. Escribime sin dudas.",
+      description: "Estoy disponible para nuevas oportunidades, proyectos freelance o colaboraciones. No dudes en escribirme si te interesa mi perfil.",
       cta: "sanntiocampo@gmail.com",
       links: [
         { icon: "✉️", label: "Email", value: "sanntiocampo@gmail.com", href: "mailto:sanntiocampo@gmail.com" },
@@ -162,14 +163,14 @@ const t = {
     hero: {
       greeting: "Hi, I'm",
       role: "Fullstack Developer",
-      description: "I build robust and scalable web applications with 3+ years of professional experience. Main stack: TypeScript, React, Node.js, Java & Spring Boot, Sql, AWS. English C1.",
+      description: "I build robust and scalable web applications with 3+ years of professional experience. Main stack: TypeScript, React, Node.js, Java & Spring Boot, Sql, AWS. English C1. Spanish is my native language.",
       cta: "See projects",
       ctaContact: "Get in touch",
       stats: [
         { value: "3+", label: "Years of experience" },
         { value: "4", label: "Companies" },
         { value: "C1", label: "English" },
-        { value: "∞", label: "Coffees ☕" },
+        { value: "∞", label: "Coffee ☕" },
       ],
     },
     about: {
@@ -180,7 +181,7 @@ const t = {
         "I work comfortably across the full stack: from database design and backend architecture to frontend UI implementation. I practice agile SCRUM methodologies and have experience with CI/CD pipelines.",
         "My English level is C1 — I communicate fluently in international teams, both verbally and in writing.",
       ],
-      stackTitle: "Technologies I use",
+      stackTitle: "Technologies I've worked with",
       categories: {
         frontend: "Frontend",
         backend: "Backend",
@@ -199,12 +200,13 @@ const t = {
         { name: "Kreator", company: "Taktiful", desc: "AI-powered image editor. Integration of Meta SAM2 model for real-time segmentation and editing.", tech: ["React", "PHP", "Python", "Meta SAM2", "AWS S3"], type: "Full Stack" },
         { name: "Reaktor", company: "Taktiful", desc: "Interactive 3D viewer for graphic print previsualization using Machine Learning models.", tech: ["React", "Three.js", "ML", "PHP", "MySQL"], type: "Full Stack" },
         { name: "Taktify", company: "Taktiful", desc: "Cost estimation platform for the graphic industry. Real-time chat, collaboration and data analysis.", tech: ["React", "Node.js", "PHP", "MySQL", "AWS Cognito"], type: "Full Stack" },
-        { name: "International Payment Systems", company: "Bizland Tech", desc: "Backend for international transactions with Western Union and Pago Fácil. Security and validation.", tech: ["Java", "Spring Boot", "MySQL", "AWS"], type: "Backend" },
+        { name: "International Payments System", company: "Bizland Tech", desc: "Backend for international transactions with Western Union and Pago Fácil. Security and validation.", tech: ["Java", "Spring Boot", "MySQL", "AWS"], type: "Backend" },
       ],
     },
     experience: {
       eyebrow: "Experience",
       title: "Professional journey",
+      current: "Current",
       items: [
         { role: "SSr Fullstack Developer", company: "NativoDev", location: "Buenos Aires, AR · Remote", period: "May 2025\nPresent", current: true, description: "Development of an Insurance Producers Portal. Involved in the full product lifecycle: architecture, implementation, testing and production deployment.", highlights: ["Microservices with Node.js, Express & Java", "Frontends in React, Vue.js & Next.js", "AWS: EC2, S3, Lambda, RDS, Fargate, Amplify", "Mercado Pago & OAuth2 integration", "PostgreSQL — optimized queries and caching"] },
         { role: "Fullstack Developer", company: "Bizland Tech", location: "Buenos Aires, AR · Remote", period: "Aug 2024\nJun 2025", current: false, description: "Java and Spring Boot development. Integration of international payment systems (Western Union, Pago Fácil). AWS infrastructure management.", highlights: ["Spring Boot (JDK 8, 11 & 21)", "Western Union & Pago Fácil", "MySQL — optimization & transactions", "AWS deployment"] },
@@ -220,7 +222,7 @@ const t = {
         { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", year: "2025", icon: "☁️", status: "in-progress", desc: "Certification in cloud-native application development on AWS." },
         { name: "Full Stack Web Developer", issuer: "Henry Bootcamp", year: "2023", icon: "⚡", status: "done", desc: "Intensive bootcamp with real-world fullstack projects." },
         { name: "Higher Technician in Software Development", issuer: "IES", year: "2021 – 2023", icon: "🎓", status: "done", desc: "Technical degree focused on software engineering." },
-        { name: "Advanced English (C1)", issuer: "International Certification", year: "2023", icon: "🌎", status: "done", desc: "Fluent communication in international environments." },
+        { name: "Advanced English (C1).", issuer: "International Certification", year: "2023", icon: "🌎", status: "done", desc: "Fluent communication in international environments." },
       ],
     },
     contact: {

@@ -25,7 +25,7 @@ export default function Experience({ t }) {
                 {item.current && (
                   <span style={{ display: "inline-flex", alignItems: "center", gap: "5px", ...mono, fontSize: "0.58rem", color: "var(--success)", marginTop: "0.4rem", letterSpacing: "0.05em" }}>
                     <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--success)", animation: "pulse-green 2s infinite", flexShrink: 0 }} />
-                    Actual
+                    {t.experience.current}
                   </span>
                 )}
               </div>
