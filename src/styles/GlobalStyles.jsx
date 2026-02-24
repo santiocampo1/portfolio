@@ -187,7 +187,6 @@ const css = `
   .section-inner {
     max-width: 840px;
     width: 100%;
-    margin: 0 auto;
   }
 
   .section-eyebrow {

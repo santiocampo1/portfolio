@@ -22,7 +22,7 @@ export default function Hero({ t, go }) {
           letterSpacing: "-0.04em", lineHeight: 1.0,
           color: "var(--text)", marginBottom: "1rem",
         }}>
-          Santiago<br />Ocampo
+          Santiago Ocampo
         </h1>
 
         <p style={{
