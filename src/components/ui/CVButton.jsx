@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 const mono = { fontFamily: "'DM Mono', monospace" };
 
 const CV_FILES = {
@@ -7,6 +9,27 @@ const CV_FILES = {
 
 export default function CVButton({ lang }) {
     const { file, label } = CV_FILES[lang] || CV_FILES.es;
+    const [bottom, setBottom] = useState("1.75rem");
+
+    useEffect(() => {
+        const footer = document.querySelector("footer");
+        if (!footer) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    const visible = entry.intersectionRect.height;
+                    setBottom(`calc(${visible}px + 1rem)`);
+                } else {
+                    setBottom("1.75rem");
+                }
+            },
+            { threshold: Array.from({ length: 101 }, (_, i) => i / 100) }
+        );
+
+        observer.observe(footer);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <a
@@ -16,7 +39,7 @@ export default function CVButton({ lang }) {
             className="cv-btn"
             style={{
                 position: "fixed",
-                bottom: "1.75rem",
+                bottom,
                 right: "1.75rem",
                 zIndex: 500,
                 display: "flex",
@@ -28,7 +51,7 @@ export default function CVButton({ lang }) {
                 borderRadius: "8px",
                 boxShadow: "0 4px 16px rgba(0,0,0,0.14)",
                 textDecoration: "none",
-                transition: "background 0.2s, transform 0.2s, box-shadow 0.2s",
+                transition: "background 0.2s, transform 0.2s, box-shadow 0.2s, bottom 0.25s ease",
                 ...mono,
                 fontSize: "0.68rem",
                 letterSpacing: "0.07em",

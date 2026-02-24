@@ -504,7 +504,6 @@ const css = `
     .cv-btn {
       padding: 12px !important;
       border-radius: 50% !important;
-      bottom: 1.25rem !important;
       right: 1.25rem !important;
     }
     .cv-btn:hover .cv-btn-tooltip,
