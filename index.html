@@ -1,18 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Santiago Ocampo – Fullstack Developer Portfolio" />
-    <meta name="theme-color" content="#1D4ED8" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Santiago Ocampo – Fullstack Developer Portfolio" />
+  <meta name="theme-color" content="#1D4ED8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Santiago Ocampo | Fullstack Developer</title>
 
-    <title>Santiago Ocampo | Fullstack Developer</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <style>
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      z-index: 9999;
+      transition: opacity 0.35s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-symbol {
+      font-family: 'Courier New', monospace;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: #111111;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      animation: loader-blink 1s ease-in-out infinite;
+    }
+
+    .loader-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #BBBBBB;
+      animation: loader-blink 1s ease-in-out infinite;
+    }
+
+    @keyframes loader-blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loader">
+    <span class="loader-symbol">{}</span>
+    <span class="loader-name">Loading</span>
+  </div>
+
+  <div id="root"></div>
+
+  <script type="module" src="/src/main.jsx"></script>
+
+  <script>
+    window.addEventListener('load', function () {
+      var loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function () { loader.remove(); }, 400);
+      }
+    });
+  </script>
+</body>
+
 </html>
