@@ -147,7 +147,7 @@ const t = {
       items: [
         { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", year: "2025", icon: "☁️", status: "in-progress", desc: "Certificación en desarrollo de aplicaciones cloud-native en AWS." },
         { name: "Full Stack Web Developer", issuer: "Henry Bootcamp", year: "2023", icon: "⚡", status: "done", desc: "Bootcamp intensivo con proyectos reales de desarrollo web fullstack." },
-        { name: "Técnico Superior en Desarrollo de Software", issuer: "IES", year: "2021 – 2023", icon: "🎓", status: "done", desc: "Carrera técnica superior con foco en ingeniería de software." },
+        { name: "Técnico Superior en Desarrollo de Software", issuer: "IES", year: "2021 – 2023", icon: "🎓", status: "done", desc: "Carrera técnica superior con foco en ingeniería y desarrollo de software." },
         { name: "Inglés Avanzado (C1)", issuer: "Certificación internacional", year: "2023", icon: "🌎", status: "done", desc: "Comunicación fluida en entornos internacionales, oral y escrita." },
       ],
     },
@@ -250,7 +250,7 @@ const t = {
       inProgress: "In progress",
       items: [
         { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", year: "2025", icon: "☁️", status: "in-progress", desc: "Certification in cloud-native application development on AWS." },
-        { name: "Full Stack Web Developer", issuer: "Henry Bootcamp", year: "2023", icon: "⚡", status: "done", desc: "Intensive bootcamp with real-world fullstack projects." },
+        { name: "Full Stack Web Developer", issuer: "Henry Bootcamp", year: "2023", icon: "⚡", status: "done", desc: "Intensive bootcamp with real-world fullstack projects. +300 hours of study and practice." },
         { name: "Higher Technician in Software Development", issuer: "IES", year: "2021 – 2023", icon: "🎓", status: "done", desc: "Technical degree focused on software engineering." },
         { name: "Advanced English (C1).", issuer: "International Certification", year: "2023", icon: "🌎", status: "done", desc: "Fluent communication in international environments." },
       ],
