@@ -1,10 +1,16 @@
-import useVisitorCount from "../../hooks/useVisitorsCount";
+import { useState } from "react";
+import useVisitorCount from "../../hooks/useVisitorCount";
+import Celebration from "../ui/Celebration";
 
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
 export default function Hero({ t, go }) {
-  const visitors = useVisitorCount();
+  const { count, isMilestone, clearMilestone } = useVisitorCount();
+  const [showCelebration, setShowCelebration] = useState(false);
+
+  // Show celebration once milestone is detected
+  if (isMilestone && !showCelebration) setShowCelebration(true);
 
   return (
     <section id="hero" className="section">
@@ -86,11 +92,9 @@ export default function Hero({ t, go }) {
         </div>
 
         {/* Dato curioso — contador de visitas */}
-        {visitors !== null && (
+        {count !== null && (
           <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
+            display: "inline-flex", alignItems: "center", gap: "0.5rem",
             marginTop: "0.85rem",
             background: "var(--accent-bg)",
             border: "1px solid #c7d7fa",
@@ -98,17 +102,10 @@ export default function Hero({ t, go }) {
             padding: "6px 12px",
           }}>
             <span style={{ fontSize: "0.7rem" }}>✦</span>
-            <p style={{
-              ...mono,
-              fontSize: "0.62rem",
-              color: "var(--accent)",
-              letterSpacing: "0.04em",
-              lineHeight: 1,
-              margin: 0,
-            }}>
+            <p style={{ ...mono, fontSize: "0.62rem", color: "var(--accent)", letterSpacing: "0.04em", lineHeight: 1, margin: 0 }}>
               {t.visitors}{" "}
               <span style={{ fontWeight: 700 }}>
-                {typeof visitors === "number" ? visitors.toLocaleString() : visitors}
+                {typeof count === "number" ? count.toLocaleString() : count}
               </span>{" "}
               {t.visitorsUnit}
             </p>
@@ -116,6 +113,16 @@ export default function Hero({ t, go }) {
         )}
 
       </div>
+
+      {/* Celebration modal */}
+      {showCelebration && typeof count === "number" && (
+        <Celebration
+          count={count}
+          t={t}
+          onClose={() => { setShowCelebration(false); clearMilestone(); }}
+          onGuestbook={() => { setShowCelebration(false); clearMilestone(); document.getElementById("guestbook")?.scrollIntoView({ behavior: "smooth" }); }}
+        />
+      )}
     </section>
   );
 }
