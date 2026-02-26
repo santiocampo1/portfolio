@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useVisitorCount from "../../hooks/useVisitorCount";
 import Celebration from "../ui/Celebration";
 
@@ -10,7 +10,9 @@ export default function Hero({ t, go }) {
   const [showCelebration, setShowCelebration] = useState(false);
 
   // Show celebration once milestone is detected
-  if (isMilestone && !showCelebration) setShowCelebration(true);
+  useEffect(() => {
+    if (isMilestone) setShowCelebration(true);
+  }, [isMilestone]);
 
   return (
     <section id="hero" className="section">
@@ -32,7 +34,7 @@ export default function Hero({ t, go }) {
           letterSpacing: "-0.04em", lineHeight: 1.0,
           color: "var(--text)", marginBottom: "1rem",
         }}>
-          Santiago Ocampo
+          Santiago<br />Ocampo
         </h1>
 
         <p style={{
@@ -67,7 +69,7 @@ export default function Hero({ t, go }) {
           </button>
         </div>
 
-        {/* Stats grid — solo los 4 originales */}
+        {/* Stats grid */}
         <div className="hero-stats" style={{
           display: "grid",
           gridTemplateColumns: `repeat(${t.hero.stats.length}, 1fr)`,
@@ -91,7 +93,7 @@ export default function Hero({ t, go }) {
           ))}
         </div>
 
-        {/* Dato curioso — contador de visitas */}
+        {/* Visitor badge */}
         {count !== null && (
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "0.5rem",
