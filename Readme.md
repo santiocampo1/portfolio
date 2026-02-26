@@ -1,6 +1,6 @@
 # Santiago Ocampo — Personal Portfolio
 
-A personal portfolio website built with a Swiss minimalist design philosophy. Clean, fast, bilingual, and backed by a real database — it goes beyond a static page to demonstrate full-stack capabilities in a practical context.
+A personal portfolio website built with a minimalist design approach. Clean, fast, bilingual, and backed by a real database — it goes beyond a static page to demonstrate full-stack capabilities in a practical context.
 
 🌐 **Live site:** [santiocampo.com](https://www.santiocampo.com)
 
