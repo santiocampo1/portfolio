@@ -12,9 +12,9 @@ const HEADERS = {
 
 export default function useVisitorCount() {
     const [count, setCount] = useState(null);
+    const [isMilestone, setIsMilestone] = useState(false);
 
     useEffect(() => {
-        // Evita contar visitas en localhost (desarrollo)
         if (window.location.hostname === "localhost") {
             setCount("—");
             return;
@@ -22,22 +22,24 @@ export default function useVisitorCount() {
 
         async function increment() {
             try {
-                // 1. Obtener el valor actual
                 const getRes = await fetch(
                     `${SUPABASE_URL}/rest/v1/visitors?id=eq.1&select=count`,
                     { headers: HEADERS }
                 );
                 const [row] = await getRes.json();
                 const current = row?.count ?? 0;
+                const next = current + 1;
 
-                // 2. Incrementar en 1
                 await fetch(`${SUPABASE_URL}/rest/v1/visitors?id=eq.1`, {
                     method: "PATCH",
                     headers: HEADERS,
-                    body: JSON.stringify({ count: current + 1 }),
+                    body: JSON.stringify({ count: next }),
                 });
 
-                setCount(current + 1);
+                setCount(next);
+
+                // Trigger celebration every 100 visits
+                if (next % 100 === 0) setIsMilestone(true);
             } catch {
                 setCount(null);
             }
@@ -46,5 +48,5 @@ export default function useVisitorCount() {
         increment();
     }, []);
 
-    return count;
+    return { count, isMilestone, clearMilestone: () => setIsMilestone(false) };
 }
