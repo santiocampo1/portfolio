@@ -163,6 +163,7 @@ const t = {
         { icon: "📱", label: "WhatsApp", value: "+54 3498 408557", href: "https://wa.me/543498408557" },
       ],
     },
+    viewSource: "Ver código",
   },
 
   en: {
@@ -267,6 +268,7 @@ const t = {
         { icon: "📱", label: "WhatsApp", value: "+54 3498 408557", href: "https://wa.me/543498408557" },
       ],
     },
+    viewSource: "View source",
   },
 };
 
