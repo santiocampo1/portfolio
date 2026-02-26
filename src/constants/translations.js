@@ -163,6 +163,13 @@ const t = {
         { icon: "📱", label: "WhatsApp", value: "+54 3498 408557", href: "https://wa.me/543498408557" },
       ],
     },
+    celebration: {
+      title: "¡Sos el visitante especial!",
+      visitorLabel: "Visitante",
+      description: "Llegaste justo en un momento especial. Me gustaría que dejes tu huella en el libro de visitas.",
+      cta: "Dejar mi firma",
+      dismiss: "Cerrar",
+    },
     viewSource: "Ver código",
   },
 
@@ -267,6 +274,13 @@ const t = {
         { icon: "🐙", label: "GitHub", value: "santiocampo1", href: "https://github.com/santiocampo1" },
         { icon: "📱", label: "WhatsApp", value: "+54 3498 408557", href: "https://wa.me/543498408557" },
       ],
+    },
+    celebration: {
+      title: "You're a special visitor!",
+      visitorLabel: "Visitor",
+      description: "You arrived at just the right moment. I'd love for you to leave your mark in the guestbook.",
+      cta: "Sign the guestbook",
+      dismiss: "Close",
     },
     viewSource: "View source",
   },
