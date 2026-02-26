@@ -50,6 +50,8 @@ A fully functional public message board that demonstrates a complete full-stack 
 
 > **Try visiting the site on a milestone visit — something special might happen.**
 
+![Celebration modal](/.github/celebration-preview.png)
+
 Every 50 visits, the site surprises the visitor with a celebration: a confetti animation bursts across the screen and a modal invites the lucky visitor to leave their mark in the guestbook. Built entirely with CSS animations — no external libraries.
 
 _Hint: check the visitor counter badge on the Hero section._
