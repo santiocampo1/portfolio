@@ -33,7 +33,7 @@ export default function App() {
         <Sidebar t={t} lang={lang} setLang={setLang} active={active} go={go} />
 
         <main className="main-content">
-          <Hero t={t} go={go} />
+          <Hero t={t} go={go} lang={lang} />
           <About t={t} />
           <Projects t={t} />
           <Experience t={t} />

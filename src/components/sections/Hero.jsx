@@ -5,7 +5,7 @@ import Celebration from "../ui/Celebration";
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
-export default function Hero({ t, go }) {
+export default function Hero({ t, go, lang }) {
   const { count, isMilestone, clearMilestone } = useVisitorCount();
   const [showCelebration, setShowCelebration] = useState(false);
 
@@ -120,7 +120,7 @@ export default function Hero({ t, go }) {
       {showCelebration && typeof count === "number" && (
         <Celebration
           count={count}
-          t={t}
+          lang={lang}
           onClose={() => { setShowCelebration(false); clearMilestone(); }}
           onGuestbook={() => { setShowCelebration(false); clearMilestone(); document.getElementById("guestbook")?.scrollIntoView({ behavior: "smooth" }); }}
         />
