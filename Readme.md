@@ -46,6 +46,14 @@ A fully functional public message board that demonstrates a complete full-stack 
 
 ---
 
+## 🎉 Secret Feature
+
+> **Try visiting the site on a milestone visit — something special might happen.**
+
+Every 50 visits, the site surprises the visitor with a celebration: a confetti animation bursts across the screen and a modal invites the lucky visitor to leave their mark in the guestbook. Built entirely with CSS animations — no external libraries.
+
+_Hint: check the visitor counter badge on the Hero section._
+
 ## Tech Stack
 
 ### Frontend
