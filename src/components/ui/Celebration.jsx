@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import translations from "../../constants/translations";
 
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
@@ -43,7 +44,9 @@ function Confetti() {
     );
 }
 
-export default function Celebration({ count, onClose, onGuestbook, t }) {
+export default function Celebration({ count, lang: initialLang, onClose, onGuestbook }) {
+    const [lang, setLang] = useState(initialLang || "es");
+    const t = translations[lang] || translations.es;
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -61,7 +64,7 @@ export default function Celebration({ count, onClose, onGuestbook, t }) {
         setTimeout(onGuestbook, 400);
     }
 
-    const c = t.celebration;
+    const c = t.celebration || {};
 
     return (
         <>
@@ -96,6 +99,32 @@ export default function Celebration({ count, onClose, onGuestbook, t }) {
                 width: "90vw",
                 textAlign: "center",
             }}>
+                {/* Lang switcher */}
+                <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.75rem", gap: "4px" }}>
+                    {["es", "en"].map(l => (
+                        <button
+                            key={l}
+                            onClick={() => setLang(l)}
+                            style={{
+                                ...mono,
+                                fontSize: "0.58rem",
+                                letterSpacing: "0.1em",
+                                textTransform: "uppercase",
+                                padding: "4px 10px",
+                                borderRadius: "4px",
+                                border: `1px solid ${lang === l ? "var(--accent)" : "var(--border)"}`,
+                                background: lang === l ? "var(--accent-bg)" : "transparent",
+                                color: lang === l ? "var(--accent)" : "var(--text-4)",
+                                cursor: "pointer",
+                                transition: "all 0.15s",
+                                fontWeight: lang === l ? 600 : 400,
+                            }}
+                        >
+                            {l}
+                        </button>
+                    ))}
+                </div>
+
                 {/* Emoji */}
                 <div style={{ fontSize: "3rem", lineHeight: 1, marginBottom: "1rem" }}>🎉</div>
 
