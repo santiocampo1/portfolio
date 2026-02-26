@@ -36,8 +36,7 @@ export default function useVisitorCount() {
                     body: JSON.stringify({ count: next }),
                 });
 
-                // Temporal debug
-                console.log("next:", next, "isMilestone:", next % 100 === 0);
+                // console.log("next:", next, "isMilestone:", next % 100 === 0);
 
                 setCount(next);
                 if (next % 100 === 0) setIsMilestone(true);
