@@ -35,6 +35,9 @@ export default function useGuestbook() {
     useEffect(() => { fetchEntries(); }, []);
 
     async function submit({ name, message, country }) {
+        // Prevent submissions from local development environment
+        if (window.location.hostname === "localhost") return;
+
         setSubmitting(true);
         setError(null);
         setSuccess(false);
