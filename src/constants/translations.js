@@ -164,7 +164,7 @@ const t = {
       ],
     },
     celebration: {
-      title: "¡Sos el visitante especial!",
+      title: "¡Sos una persona especial!",
       visitorLabel: "Visitante",
       description: "Llegaste justo en un momento especial. Me gustaría que dejes tu huella en el libro de visitas.",
       cta: "Dejar mi firma",
@@ -276,7 +276,7 @@ const t = {
       ],
     },
     celebration: {
-      title: "You're a special visitor!",
+      title: "You're a special person for me!",
       visitorLabel: "Visitor",
       description: "You arrived at just the right moment. I'd love for you to leave your mark in the guestbook.",
       cta: "Sign the guestbook",
