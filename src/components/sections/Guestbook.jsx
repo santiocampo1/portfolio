@@ -66,6 +66,70 @@ function timeAgo(dateStr, lang) {
     return lang === "es" ? `hace ${d}d` : `${d}d ago`;
 }
 
+/* ── Reply toggle ── */
+function ReplyBubble({ reply, label }) {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div style={{ marginTop: "0.75rem" }}>
+            {/* Toggle button */}
+            <button
+                onClick={() => setOpen(o => !o)}
+                style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    background: open ? "var(--accent-bg)" : "transparent",
+                    border: `1px solid ${open ? "#c7d7fa" : "var(--border)"}`,
+                    borderRadius: "20px",
+                    padding: "4px 12px 4px 8px",
+                    cursor: "pointer",
+                    transition: "all 0.2s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = "var(--accent-bg)"; e.currentTarget.style.borderColor = "#c7d7fa"; }}
+                onMouseLeave={e => { if (!open) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "var(--border)"; } }}
+            >
+                {/* Bubble icon */}
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                    <path d="M14 1H2C1.45 1 1 1.45 1 2v9c0 .55.45 1 1 1h2v3l3.5-3H14c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1z"
+                        stroke="var(--accent)" strokeWidth="1.4" strokeLinejoin="round" />
+                </svg>
+                <span style={{ ...mono, fontSize: "0.58rem", color: "var(--accent)", letterSpacing: "0.06em", fontWeight: 600 }}>
+                    {label}
+                </span>
+                {/* Chevron */}
+                <svg
+                    style={{ transform: `rotate(${open ? 180 : 0}deg)`, transition: "transform 0.2s" }}
+                    width="10" height="10" viewBox="0 0 10 10" fill="none"
+                >
+                    <path d="M2 3.5l3 3 3-3" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </button>
+
+            {/* Reply content */}
+            <div style={{
+                maxHeight: open ? "200px" : "0px",
+                overflow: "hidden",
+                transition: "max-height 0.3s ease",
+            }}>
+                <div style={{
+                    marginTop: "0.625rem",
+                    padding: "0.75rem 1rem",
+                    background: "var(--accent-bg)",
+                    border: "1px solid #c7d7fa",
+                    borderRadius: "8px",
+                    borderTopLeftRadius: "2px",
+                }}>
+                    <p style={{ ...mono, fontSize: "0.58rem", color: "var(--accent)", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 6px", fontWeight: 600 }}>
+                        Santiago
+                    </p>
+                    <p style={{ fontSize: "0.875rem", color: "var(--text-2)", lineHeight: 1.75, margin: 0 }}>
+                        {reply}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 /* ── Custom dropdown ── */
 function CountrySelect({ value, onChange, placeholder, focused, onFocus, onBlur }) {
     const [open, setOpen] = useState(false);
@@ -80,7 +144,6 @@ function CountrySelect({ value, onChange, placeholder, focused, onFocus, onBlur 
 
     return (
         <div ref={ref} style={{ position: "relative" }}>
-            {/* Trigger */}
             <button
                 type="button"
                 onClick={() => { setOpen(o => !o); onFocus(); }}
@@ -113,13 +176,11 @@ function CountrySelect({ value, onChange, placeholder, focused, onFocus, onBlur 
                 ) : (
                     <span>{placeholder}</span>
                 )}
-                {/* chevron */}
                 <svg style={{ position: "absolute", right: 12, top: "50%", transform: `translateY(-50%) rotate(${open ? 180 : 0}deg)`, transition: "transform 0.2s", pointerEvents: "none" }} width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M2 4l4 4 4-4" stroke="var(--text-3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             </button>
 
-            {/* Dropdown list */}
             {open && (
                 <div style={{
                     position: "absolute",
@@ -339,6 +400,14 @@ export default function Guestbook({ t, lang }) {
                                 <p style={{ fontSize: "0.875rem", color: "var(--text-2)", lineHeight: 1.75, margin: 0 }}>
                                     {entry.message}
                                 </p>
+
+                                {/* Reply toggle */}
+                                {entry.reply && (
+                                    <ReplyBubble
+                                        reply={entry.reply}
+                                        label={lang === "es" ? "1 respuesta" : "1 reply"}
+                                    />
+                                )}
                             </div>
                         </Reveal>
                     ))}
