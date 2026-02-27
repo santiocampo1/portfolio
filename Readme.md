@@ -6,7 +6,7 @@ A personal portfolio website built with a minimalist design approach. Clean, fas
 
 ---
 
-## Features
+## ✨ Features
 
 ### Core
 
@@ -34,15 +34,16 @@ A fully functional public message board that demonstrates a complete full-stack 
 
 - Custom country dropdown with real flag images (via [flagcdn.com](https://flagcdn.com)) — works cross-platform including Windows
 - Form validation with character counter
-- Toast notification on successful submission
 - Email notification to the site owner on every new message (via Supabase Edge Function + Resend)
 - Row Level Security (RLS) policies to protect data integrity
+- **Reply system** — replies are managed directly from Supabase via SQL. When a reply exists, an expandable bubble appears on the entry with a smooth toggle animation
 
 ### Visitor Counter
 
 - Reads and increments a counter in Supabase on every page load
 - Displayed as a styled badge in the Hero section
 - Returns `—` in localhost to avoid polluting production data
+- Detects milestone visits and triggers a celebration
 
 ---
 
@@ -55,6 +56,8 @@ A fully functional public message board that demonstrates a complete full-stack 
 Every 50 visits, the site surprises the visitor with a celebration: a confetti animation bursts across the screen and a modal invites the lucky visitor to leave their mark in the guestbook. Built entirely with CSS animations — no external libraries.
 
 _Hint: check the visitor counter badge on the Hero section._
+
+---
 
 ## Tech Stack
 
@@ -105,14 +108,14 @@ portfolio/
 │   │   │   ├── Guestbook.jsx
 │   │   │   └── Contact.jsx
 │   │   └── ui/
+│   │       ├── Celebration.jsx    # Milestone confetti modal
 │   │       ├── CVButton.jsx       # Fixed CV download button
-│   │       ├── Reveal.jsx         # Scroll-triggered fade-in wrapper
-│   │       └── Toast.jsx          # Success notification popup
+│   │       └── Reveal.jsx         # Scroll-triggered fade-in wrapper
 │   ├── constants/
 │   │   └── translations.js        # All UI strings in ES and EN
 │   ├── hooks/
 │   │   ├── useScrollSpy.js        # Active section detection
-│   │   ├── useVisitorCount.js     # Supabase visitor counter
+│   │   ├── useVisitorCount.js     # Supabase visitor counter + milestone detection
 │   │   └── useGuestbook.js        # Supabase guestbook CRUD
 │   ├── styles/
 │   │   └── GlobalStyles.jsx       # Global CSS variables and resets
@@ -143,6 +146,7 @@ CREATE TABLE guestbook (
   name       TEXT NOT NULL,
   message    TEXT NOT NULL,
   country    TEXT,
+  reply      TEXT,                  -- Managed directly via SQL from Supabase dashboard
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
