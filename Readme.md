@@ -112,11 +112,16 @@ portfolio/
 │   │       ├── CVButton.jsx       # Fixed CV download button
 │   │       └── Reveal.jsx         # Scroll-triggered fade-in wrapper
 │   ├── constants/
-│   │   └── translations.js        # All UI strings in ES and EN
+│   │   ├── translations.js        # All UI strings in ES and EN
+│   │   ├── countries.js           # Country list and code map for guestbook
+│   │   └── data.js                # Tech stack, nav sections and nav items
 │   ├── hooks/
 │   │   ├── useScrollSpy.js        # Active section detection
+│   │   ├── useVisible.js          # Intersection observer for reveal animations
 │   │   ├── useVisitorCount.js     # Supabase visitor counter + milestone detection
 │   │   └── useGuestbook.js        # Supabase guestbook CRUD
+│   ├── lib/
+│   │   └── supabase.js            # Supabase URL, key and shared headers
 │   ├── styles/
 │   │   └── GlobalStyles.jsx       # Global CSS variables and resets
 │   ├── App.jsx
