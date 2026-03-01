@@ -1,9 +1,7 @@
 import { useState, useCallback } from "react";
-
 import GlobalStyles from "./styles/GlobalStyles";
 import translations from "./constants/translations";
 import useScrollSpy from "./hooks/useScrollSpy";
-
 import Sidebar from "./components/layout/Sidebar";
 import Topbar from "./components/layout/TopBar";
 import Hero from "./components/sections/Hero";
@@ -17,7 +15,7 @@ import CVButton from "./components/ui/CVButton";
 
 export default function App() {
   const [lang, setLang] = useState("es");
-  const active = useScrollSpy();
+  const { activeSection: active } = useScrollSpy();
   const t = translations[lang];
 
   const go = useCallback((id) => {
@@ -28,10 +26,8 @@ export default function App() {
     <>
       <GlobalStyles />
       <Topbar t={t} lang={lang} setLang={setLang} active={active} go={go} />
-
       <div className="app-shell">
         <Sidebar t={t} lang={lang} setLang={setLang} active={active} go={go} />
-
         <main className="main-content">
           <Hero t={t} go={go} lang={lang} />
           <About t={t} />
@@ -40,7 +36,6 @@ export default function App() {
           <Education t={t} />
           <Guestbook t={t} lang={lang} />
           <Contact t={t} />
-
           <footer style={{
             padding: "1.25rem 3rem",
             borderTop: "1px solid var(--border)",
