@@ -15,21 +15,22 @@ A personal portfolio website built with a minimalist design approach. Clean, fas
 - **Professional / Personal view switcher** — toggle between the professional portfolio and the personal space without losing navigation context
 - **Responsive layout** — dedicated sidebar for desktop, slide-in topbar for mobile; view switcher always visible on both
 - **Page loader** — custom CSS animation before React mounts, eliminating flash of unstyled content (FOUC)
-- **CV download button** — fixed button that serves the Spanish or English PDF depending on the active language, with mobile-aware behavior (hides when footer is visible)
+- **CV download button** — inline button in the Hero section that serves the Spanish or English PDF depending on the active language
+- **AI Chatbot (Simón)** — floating chat button powered by Claude Haiku; responds as Santiago's dog with full knowledge of his experience, projects, and books
 
 ### Sections
 
 #### Professional
 
-| Section        | Description                                                                |
-| -------------- | -------------------------------------------------------------------------- |
-| **Hero**       | Name, role, description, CTA buttons, stats grid, and live visitor counter |
-| **About**      | Bio, profile photo, and full tech stack organized by category              |
-| **Projects**   | Table of professional projects with stack tags and company                 |
-| **Experience** | Timeline of professional roles with highlights                             |
-| **Education**  | Certifications and academic background                                     |
-| **Guestbook**  | Public message board backed by Supabase                                    |
-| **Contact**    | Links to email, LinkedIn, GitHub, and WhatsApp                             |
+| Section        | Description                                                                                        |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| **Hero**       | Name, role, description, CTA buttons (including CV download), stats grid, and live visitor counter |
+| **About**      | Bio, profile photo, and full tech stack organized by category                                      |
+| **Projects**   | Table of professional projects with stack tags and company                                         |
+| **Experience** | Timeline of professional roles with highlights                                                     |
+| **Education**  | Certifications and academic background                                                             |
+| **Guestbook**  | Public message board backed by Supabase                                                            |
+| **Contact**    | Links to email, LinkedIn, GitHub, and WhatsApp                                                     |
 
 #### Personal
 
@@ -57,6 +58,17 @@ A personal reading list backed by Supabase, organized into four categories:
 - **Other** — leadership, business, and culture
 
 Cover images are loaded automatically from the [Open Library Covers API](https://openlibrary.org/dev/docs/api#anchor_covers). If a cover is not found, an elegant placeholder is shown. New books can be added directly from the Supabase dashboard without touching the codebase.
+
+### Simón — AI Chatbot
+
+A floating chat assistant that lives in the bottom-right corner of the site, personified as Santiago's dog.
+
+- Powered by **Claude Haiku** via a Supabase Edge Function — the API key never touches the frontend
+- Knows everything about Santiago: experience, projects, tech stack, books, and how the portfolio was built
+- Responds in the same language the user writes in (ES/EN)
+- Book data is fetched dynamically from Supabase at runtime — adding a new book to the DB is enough for Simón to know about it
+- On mobile: opens as a fullscreen overlay with iOS keyboard-safe layout
+- Violet pulse effect on the button to draw attention without being intrusive
 
 ### Visitor Counter
 
@@ -93,14 +105,15 @@ _Hint: check the visitor counter badge on the Hero section._
 
 ### Backend & Infrastructure
 
-| Technology                     | Usage                                                      |
-| ------------------------------ | ---------------------------------------------------------- |
-| **Supabase**                   | PostgreSQL database + REST API                             |
-| **Supabase Edge Functions**    | Serverless function for email notifications (Deno runtime) |
-| **Supabase Database Webhooks** | Triggers Edge Function on `guestbook` INSERT               |
-| **Resend**                     | Transactional email delivery                               |
-| **Open Library Covers API**    | Book cover images fetched by title                         |
-| **Vercel**                     | Hosting and CI/CD                                          |
+| Technology                     | Usage                                                                      |
+| ------------------------------ | -------------------------------------------------------------------------- |
+| **Supabase**                   | PostgreSQL database + REST API                                             |
+| **Supabase Edge Functions**    | Serverless functions for email notifications and AI chatbot (Deno runtime) |
+| **Supabase Database Webhooks** | Triggers Edge Function on `guestbook` INSERT                               |
+| **Resend**                     | Transactional email delivery                                               |
+| **Anthropic Claude Haiku**     | AI model powering the Simón chatbot                                        |
+| **Open Library Covers API**    | Book cover images fetched by title                                         |
+| **Vercel**                     | Hosting and CI/CD                                                          |
 
 ---
 
@@ -111,6 +124,7 @@ portfolio/
 ├── public/
 │   ├── favicon.svg
 │   ├── og-image.jpg
+│   ├── simon-avatar.jpg           # Simón's photo — used as chatbot avatar
 │   ├── CV-SantiagoOcampo.pdf
 │   └── Resume-SantiagoOcampo.pdf
 ├── src/
@@ -121,7 +135,7 @@ portfolio/
 │   │   │   ├── Sidebar.jsx        # Desktop navigation with Pro/Personal switcher
 │   │   │   └── Topbar.jsx         # Mobile navigation with Pro/Personal switcher
 │   │   ├── sections/
-│   │   │   ├── Hero.jsx
+│   │   │   ├── Hero.jsx           # Includes inline CV download button
 │   │   │   ├── About.jsx
 │   │   │   ├── Projects.jsx
 │   │   │   ├── Experience.jsx
@@ -131,7 +145,7 @@ portfolio/
 │   │   │   └── Books.jsx          # Personal reading list with cover images
 │   │   └── ui/
 │   │       ├── Celebration.jsx    # Milestone confetti modal
-│   │       ├── CVButton.jsx       # Fixed CV download button
+│   │       ├── Simon.jsx          # AI chatbot — floating button + chat window
 │   │       └── Reveal.jsx         # Scroll-triggered fade-in wrapper
 │   ├── constants/
 │   │   ├── translations.js        # All UI strings in ES and EN
@@ -151,8 +165,11 @@ portfolio/
 │   └── main.jsx
 ├── supabase/
 │   └── functions/
-│       └── notify-guestbook/
-│           └── index.ts           # Edge Function — email on new message
+│       ├── notify-guestbook/
+│       │   └── index.ts           # Edge Function — email on new guestbook message
+│       └── chat-simon/
+│           ├── index.ts           # Edge Function — Claude Haiku AI chatbot
+│           └── prompt.ts          # Simón's system prompt and knowledge base
 ├── index.html
 └── .env                           # VITE_SUPABASE_URL, VITE_SUPABASE_KEY
 ```
@@ -199,10 +216,13 @@ VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_KEY=your_supabase_anon_key
 ```
 
-For the Edge Function, the following secret is set via Supabase CLI:
+Edge Function secrets are set via Supabase CLI:
 
 ```bash
-supabase secrets set RESEND_API_KEY=your_resend_api_key
+supabase secrets set RESEND_API_KEY=your_resend_api_key --project-ref your_project_ref
+supabase secrets set ANTHROPIC_API_KEY=your_anthropic_api_key --project-ref your_project_ref
+supabase secrets set PROJECT_URL=your_supabase_project_url --project-ref your_project_ref
+supabase secrets set PROJECT_ANON_KEY=your_supabase_anon_key --project-ref your_project_ref
 ```
 
 ---
@@ -233,10 +253,11 @@ The project uses a two-branch Git workflow:
 
 Vercel automatically deploys every push. Environment variables are scoped per environment in the Vercel dashboard.
 
-The Supabase Edge Function is deployed independently via the Supabase CLI:
+Supabase Edge Functions are deployed independently via the Supabase CLI:
 
 ```bash
 supabase functions deploy notify-guestbook --project-ref your_project_ref
+supabase functions deploy chat-simon --project-ref your_project_ref
 ```
 
 ---
