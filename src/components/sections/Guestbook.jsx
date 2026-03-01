@@ -1,47 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import useGuestbook from "../../hooks/useGuestbook";
 import Reveal from "../ui/Reveal";
+import { COUNTRIES, CODE_MAP } from "../../constants/countries";
 
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
-const COUNTRIES = [
-    { name: "Argentina", code: "ar" },
-    { name: "Australia", code: "au" },
-    { name: "Bolivia", code: "bo" },
-    { name: "Brazil", code: "br" },
-    { name: "Canada", code: "ca" },
-    { name: "Chile", code: "cl" },
-    { name: "China", code: "cn" },
-    { name: "Colombia", code: "co" },
-    { name: "Costa Rica", code: "cr" },
-    { name: "Ecuador", code: "ec" },
-    { name: "El Salvador", code: "sv" },
-    { name: "France", code: "fr" },
-    { name: "Germany", code: "de" },
-    { name: "Guatemala", code: "gt" },
-    { name: "Honduras", code: "hn" },
-    { name: "India", code: "in" },
-    { name: "Italy", code: "it" },
-    { name: "Japan", code: "jp" },
-    { name: "Mexico", code: "mx" },
-    { name: "Netherlands", code: "nl" },
-    { name: "Nicaragua", code: "ni" },
-    { name: "Panama", code: "pa" },
-    { name: "Paraguay", code: "py" },
-    { name: "Peru", code: "pe" },
-    { name: "Portugal", code: "pt" },
-    { name: "South Korea", code: "kr" },
-    { name: "Spain", code: "es" },
-    { name: "UK", code: "gb" },
-    { name: "Ukraine", code: "ua" },
-    { name: "United States", code: "us" },
-    { name: "Uruguay", code: "uy" },
-    { name: "Venezuela", code: "ve" },
-    { name: "Other", code: null },
-];
-
-const CODE_MAP = Object.fromEntries(COUNTRIES.map(c => [c.name, c.code]));
 
 function FlagImg({ code, size = 20 }) {
     if (!code) return <span style={{ fontSize: size * 0.85, lineHeight: 1 }}>🌍</span>;
