@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
-
-const HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": `Bearer ${SUPABASE_KEY}`,
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
-};
+import { SUPABASE_URL, HEADERS } from "../lib/supabase";
 
 export default function useGuestbook() {
     const [entries, setEntries] = useState([]);
@@ -35,9 +26,7 @@ export default function useGuestbook() {
     useEffect(() => { fetchEntries(); }, []);
 
     async function submit({ name, message, country }) {
-        // Prevent submissions from local development environment
         if (window.location.hostname === "localhost") return;
-
         setSubmitting(true);
         setError(null);
         setSuccess(false);

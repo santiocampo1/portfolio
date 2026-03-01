@@ -1,14 +1,6 @@
-const mono = { fontFamily: "'DM Mono', monospace" };
+import { NAV_ITEMS } from "../../constants/data";
 
-const NAV_ITEMS = [
-    { id: "hero", icon: "⌂", labelKey: "hero" },
-    { id: "about", icon: "◎", labelKey: "about" },
-    { id: "projects", icon: "⬡", labelKey: "projects" },
-    { id: "experience", icon: "◈", labelKey: "experience" },
-    { id: "education", icon: "◉", labelKey: "education" },
-    { id: "guestbook", icon: "✎", labelKey: "guestbook" },
-    { id: "contact", icon: "◌", labelKey: "contact" },
-];
+const mono = { fontFamily: "'DM Mono', monospace" };
 
 export default function Sidebar({ t, lang, setLang, active, go }) {
     return (
@@ -18,7 +10,6 @@ export default function Sidebar({ t, lang, setLang, active, go }) {
                 <span className="sidebar-logo-name">Santiago Ocampo</span>
                 <span className="sidebar-logo-role">Fullstack Developer</span>
             </div>
-
             {/* Nav */}
             <nav className="sidebar-nav">
                 <p className="sidebar-section-label">{t.nav_label}</p>
@@ -33,15 +24,12 @@ export default function Sidebar({ t, lang, setLang, active, go }) {
                     </div>
                 ))}
             </nav>
-
             {/* Footer */}
             <div className="sidebar-footer">
                 <div className="available-badge">
                     <span className="available-dot" />
                     {t.available}
                 </div>
-
-                {/* Lang toggle */}
                 <div className="lang-toggle">
                     {[["es", "🇦🇷  ES"], ["en", "🇺🇸  EN"]].map(([l, label]) => (
                         <button

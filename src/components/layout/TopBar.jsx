@@ -1,20 +1,10 @@
 import { useState } from "react";
-
-const NAV_ITEMS = [
-    { id: "hero", icon: "⌂", labelKey: "hero" },
-    { id: "about", icon: "◎", labelKey: "about" },
-    { id: "projects", icon: "⬡", labelKey: "projects" },
-    { id: "experience", icon: "◈", labelKey: "experience" },
-    { id: "education", icon: "◉", labelKey: "education" },
-    { id: "guestbook", icon: "✎", labelKey: "guestbook" },
-    { id: "contact", icon: "◌", labelKey: "contact" },
-];
+import { NAV_ITEMS } from "../../constants/data";
 
 const mono = { fontFamily: "'DM Mono', monospace" };
 
 export default function Topbar({ t, lang, setLang, active, go }) {
     const [open, setOpen] = useState(false);
-
     const handle = (id) => { go(id); setOpen(false); };
 
     return (
@@ -34,7 +24,6 @@ export default function Topbar({ t, lang, setLang, active, go }) {
                     </button>
                 </div>
             </div>
-
             <div className={`mobile-menu ${open ? "open" : ""}`}>
                 <p className="sidebar-section-label" style={{ marginBottom: "0.75rem" }}>Navegación</p>
                 {NAV_ITEMS.map(({ id, icon, labelKey }) => (
@@ -47,7 +36,6 @@ export default function Topbar({ t, lang, setLang, active, go }) {
                         {t.nav[labelKey]}
                     </div>
                 ))}
-
                 <div style={{ marginTop: "auto", paddingTop: "2rem" }}>
                     <div className="available-badge">
                         <span className="available-dot" />

@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
-
-const HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": `Bearer ${SUPABASE_KEY}`,
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
-};
+import { SUPABASE_URL, HEADERS } from "../lib/supabase";
 
 export default function useVisitorCount() {
     const [count, setCount] = useState(null);
@@ -36,12 +27,9 @@ export default function useVisitorCount() {
                     body: JSON.stringify({ count: next }),
                 });
 
-                // console.log("next:", next, "isMilestone:", next % 100 === 0);
-
                 setCount(next);
                 if (next % 50 === 0) setIsMilestone(true);
-            } catch (e) {
-                console.error("useVisitorCount error:", e);
+            } catch {
                 setCount(null);
             }
         }
