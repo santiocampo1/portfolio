@@ -1,5 +1,7 @@
 const t = {
   es: {
+    nav_label_pro: "Profesional",
+    nav_label_personal: "Personal",
     guestbook: {
       eyebrow: "Libro de visitas",
       title: "Dejá tu mensaje",
@@ -22,6 +24,7 @@ const t = {
       education: "Educación",
       guestbook: "Libro de visitas",
       contact: "Contacto",
+      books: "Mis libros",
     },
     nav_label: "Navegación",
     available: "Disponible para trabajar",
@@ -152,6 +155,18 @@ const t = {
         { name: "Inglés Avanzado (C1)", issuer: "Certificación internacional", year: "2023", icon: "🌎", status: "done", desc: "Comunicación fluida en entornos internacionales, oral y escrita." },
       ],
     },
+    books: {
+      eyebrow: "Espacio personal",
+      title: "Mis libros favoritos",
+      description: "Una selección de los libros que más me han marcado. No quería dejar de tenerlos en mi portfolio porque son parte importante de mi formación autodidacta y de quién soy hoy.",
+      categories: {
+        personal: "Desarrollo Personal",
+        technical: "Técnicos",
+        biography: "Biografías",
+        other: "Otros",
+        loading: "Cargando libros..."
+      },
+    },
     contact: {
       eyebrow: "Contacto",
       title: "¿Hablamos?",
@@ -175,6 +190,8 @@ const t = {
   },
 
   en: {
+    nav_label_pro: "Professional",
+    nav_label_personal: "Personal",
     guestbook: {
       eyebrow: "Guestbook",
       title: "Leave a message",
@@ -197,6 +214,7 @@ const t = {
       education: "Education",
       guestbook: "Guestbook",
       contact: "Contact",
+      books: "My Books",
     },
     nav_label: "Navigation",
     available: "Available for work",
@@ -264,6 +282,18 @@ const t = {
         { name: "Higher Technician in Software Development", issuer: "IES", year: "2021 – 2023", icon: "🎓", status: "done", desc: "Technical degree focused on software engineering." },
         { name: "Advanced English (C1).", issuer: "International Certification", year: "2023", icon: "🌎", status: "done", desc: "Fluent communication in international environments." },
       ],
+    },
+    books: {
+      eyebrow: "Personal space",
+      title: "My favorite books",
+      description: "A selection of the books that have shaped me the most. I wanted them in my portfolio because they are an important part of my self-taught journey and who I am today.",
+      categories: {
+        personal: "Personal Growth",
+        biography: "Biographies",
+        technical: "Technical",
+        other: "Other",
+        loading: "Loading books..."
+      },
     },
     contact: {
       eyebrow: "Contact",
