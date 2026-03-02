@@ -12,11 +12,14 @@ A personal portfolio website built with a minimalist design approach. Clean, fas
 
 - **Bilingual (ES / EN)** — full internationalization with a custom translation system, no external i18n libraries
 - **Smooth scroll navigation** — sidebar-based navigation with active section detection via `IntersectionObserver`
-- **Responsive layout** — dedicated sidebar for desktop, slide-in topbar for mobile
+- **Professional / Personal view switcher** — toggle between the professional portfolio and the personal space without losing navigation context
+- **Responsive layout** — dedicated sidebar for desktop, slide-in topbar for mobile; view switcher always visible on both
 - **Page loader** — custom CSS animation before React mounts, eliminating flash of unstyled content (FOUC)
 - **CV download button** — fixed button that serves the Spanish or English PDF depending on the active language, with mobile-aware behavior (hides when footer is visible)
 
 ### Sections
+
+#### Professional
 
 | Section        | Description                                                                |
 | -------------- | -------------------------------------------------------------------------- |
@@ -28,6 +31,12 @@ A personal portfolio website built with a minimalist design approach. Clean, fas
 | **Guestbook**  | Public message board backed by Supabase                                    |
 | **Contact**    | Links to email, LinkedIn, GitHub, and WhatsApp                             |
 
+#### Personal
+
+| Section      | Description                                                               |
+| ------------ | ------------------------------------------------------------------------- |
+| **My Books** | Favorite books organized by category, with cover images from Open Library |
+
 ### Guestbook
 
 A fully functional public message board that demonstrates a complete full-stack integration:
@@ -37,6 +46,17 @@ A fully functional public message board that demonstrates a complete full-stack 
 - Email notification to the site owner on every new message (via Supabase Edge Function + Resend)
 - Row Level Security (RLS) policies to protect data integrity
 - **Reply system** — replies are managed directly from Supabase via SQL. When a reply exists, an expandable bubble appears on the entry with a smooth toggle animation
+
+### Books
+
+A personal reading list backed by Supabase, organized into four categories:
+
+- **Personal Development** — habits, focus, stoicism, mindset
+- **Biographies** — Steve Jobs, Elon Musk, Phil Knight, Jeff Bezos, and more
+- **Technical** — Clean Code, The Pragmatic Programmer, AWS, and others
+- **Other** — leadership, business, and culture
+
+Cover images are loaded automatically from the [Open Library Covers API](https://openlibrary.org/dev/docs/api#anchor_covers). If a cover is not found, an elegant placeholder is shown. New books can be added directly from the Supabase dashboard without touching the codebase.
 
 ### Visitor Counter
 
@@ -79,6 +99,7 @@ _Hint: check the visitor counter badge on the Hero section._
 | **Supabase Edge Functions**    | Serverless function for email notifications (Deno runtime) |
 | **Supabase Database Webhooks** | Triggers Edge Function on `guestbook` INSERT               |
 | **Resend**                     | Transactional email delivery                               |
+| **Open Library Covers API**    | Book cover images fetched by title                         |
 | **Vercel**                     | Hosting and CI/CD                                          |
 
 ---
@@ -97,8 +118,8 @@ portfolio/
 │   │   └── photo.jpg
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── Sidebar.jsx        # Desktop navigation
-│   │   │   └── Topbar.jsx         # Mobile navigation
+│   │   │   ├── Sidebar.jsx        # Desktop navigation with Pro/Personal switcher
+│   │   │   └── Topbar.jsx         # Mobile navigation with Pro/Personal switcher
 │   │   ├── sections/
 │   │   │   ├── Hero.jsx
 │   │   │   ├── About.jsx
@@ -106,7 +127,8 @@ portfolio/
 │   │   │   ├── Experience.jsx
 │   │   │   ├── Education.jsx
 │   │   │   ├── Guestbook.jsx
-│   │   │   └── Contact.jsx
+│   │   │   ├── Contact.jsx
+│   │   │   └── Books.jsx          # Personal reading list with cover images
 │   │   └── ui/
 │   │       ├── Celebration.jsx    # Milestone confetti modal
 │   │       ├── CVButton.jsx       # Fixed CV download button
@@ -119,7 +141,8 @@ portfolio/
 │   │   ├── useScrollSpy.js        # Active section detection
 │   │   ├── useVisible.js          # Intersection observer for reveal animations
 │   │   ├── useVisitorCount.js     # Supabase visitor counter + milestone detection
-│   │   └── useGuestbook.js        # Supabase guestbook CRUD
+│   │   ├── useGuestbook.js        # Supabase guestbook CRUD
+│   │   └── useBooks.js            # Supabase books fetch, grouped by category
 │   ├── lib/
 │   │   └── supabase.js            # Supabase URL, key and shared headers
 │   ├── styles/
@@ -154,9 +177,18 @@ CREATE TABLE guestbook (
   reply      TEXT,                  -- Managed directly via SQL from Supabase dashboard
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Books (personal reading list)
+CREATE TABLE books (
+  id         BIGSERIAL PRIMARY KEY,
+  title      TEXT NOT NULL,
+  author     TEXT NOT NULL,
+  category   TEXT NOT NULL CHECK (category IN ('personal', 'biography', 'technical', 'other')),
+  sort_order INT DEFAULT 0
+);
 ```
 
-Both tables have **Row Level Security (RLS)** enabled with explicit public policies.
+All tables have **Row Level Security (RLS)** enabled with explicit public read policies.
 
 ---
 
