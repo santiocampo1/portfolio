@@ -11,10 +11,12 @@ import Experience from "./components/sections/Experience";
 import Education from "./components/sections/Education";
 import Contact from "./components/sections/Contact";
 import Guestbook from "./components/sections/Guestbook";
+import Books from "./components/sections/Books";
 import CVButton from "./components/ui/CVButton";
 
 export default function App() {
   const [lang, setLang] = useState("es");
+  const [view, setView] = useState("pro");
   const { activeSection: active } = useScrollSpy();
   const t = translations[lang];
 
@@ -22,20 +24,31 @@ export default function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
+  const switchView = useCallback((v) => {
+    setView(v);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <>
       <GlobalStyles />
-      <Topbar t={t} lang={lang} setLang={setLang} active={active} go={go} />
+      <Topbar t={t} lang={lang} setLang={setLang} active={active} go={go} view={view} setView={switchView} />
       <div className="app-shell">
-        <Sidebar t={t} lang={lang} setLang={setLang} active={active} go={go} />
+        <Sidebar t={t} lang={lang} setLang={setLang} active={active} go={go} view={view} setView={switchView} />
         <main className="main-content">
-          <Hero t={t} go={go} lang={lang} />
-          <About t={t} />
-          <Projects t={t} />
-          <Experience t={t} />
-          <Education t={t} />
-          <Guestbook t={t} lang={lang} />
-          <Contact t={t} />
+          {view === "pro" ? (
+            <>
+              <Hero t={t} go={go} lang={lang} />
+              <About t={t} />
+              <Projects t={t} />
+              <Experience t={t} />
+              <Education t={t} />
+              <Guestbook t={t} lang={lang} />
+              <Contact t={t} />
+            </>
+          ) : (
+            <Books t={t} />
+          )}
           <footer style={{
             padding: "1.25rem 3rem",
             borderTop: "1px solid var(--border)",

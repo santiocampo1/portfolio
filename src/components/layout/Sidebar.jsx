@@ -1,8 +1,36 @@
-import { NAV_ITEMS } from "../../constants/data";
+import { NAV_ITEMS_PRO, NAV_ITEMS_PERSONAL } from "../../constants/data";
 
 const mono = { fontFamily: "'DM Mono', monospace" };
 
-export default function Sidebar({ t, lang, setLang, active, go }) {
+function ViewTab({ label, active, onClick }) {
+    return (
+        <button
+            onClick={onClick}
+            style={{
+                ...mono,
+                flex: 1,
+                fontSize: "0.6rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                fontWeight: active ? 600 : 400,
+                padding: "6px 4px",
+                borderRadius: "5px",
+                border: "none",
+                background: active ? "var(--bg)" : "transparent",
+                color: active ? "var(--text)" : "var(--text-4)",
+                cursor: "pointer",
+                transition: "all 0.15s",
+                boxShadow: active ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
+            }}
+        >
+            {label}
+        </button>
+    );
+}
+
+export default function Sidebar({ t, lang, setLang, active, go, view, setView }) {
+    const navItems = view === "pro" ? NAV_ITEMS_PRO : NAV_ITEMS_PERSONAL;
+
     return (
         <aside className="sidebar">
             {/* Logo */}
@@ -10,10 +38,24 @@ export default function Sidebar({ t, lang, setLang, active, go }) {
                 <span className="sidebar-logo-name">Santiago Ocampo</span>
                 <span className="sidebar-logo-role">Fullstack Developer</span>
             </div>
+
+            {/* View switcher */}
+            <div style={{
+                display: "flex",
+                gap: "2px",
+                margin: "0 1rem 1rem",
+                background: "var(--bg-hover)",
+                padding: "3px",
+                borderRadius: "7px",
+                border: "1px solid var(--border)",
+            }}>
+                <ViewTab label={t.nav_label_pro} active={view === "pro"} onClick={() => setView("pro")} />
+                <ViewTab label={t.nav_label_personal} active={view === "personal"} onClick={() => setView("personal")} />
+            </div>
+
             {/* Nav */}
             <nav className="sidebar-nav">
-                <p className="sidebar-section-label">{t.nav_label}</p>
-                {NAV_ITEMS.map(({ id, icon, labelKey }) => (
+                {navItems.map(({ id, icon, labelKey }) => (
                     <div
                         key={id}
                         className={`nav-item ${active === id ? "active" : ""}`}
