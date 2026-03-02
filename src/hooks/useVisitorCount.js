@@ -11,6 +11,12 @@ export default function useVisitorCount() {
             return;
         }
 
+        const cached = sessionStorage.getItem("visited");
+        if (cached) {
+            setCount(Number(cached));
+            return;
+        }
+
         async function increment() {
             try {
                 const getRes = await fetch(
@@ -28,6 +34,7 @@ export default function useVisitorCount() {
                 });
 
                 setCount(next);
+                sessionStorage.setItem("visited", next);
                 if (next % 50 === 0) setIsMilestone(true);
             } catch {
                 setCount(null);
