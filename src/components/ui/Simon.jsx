@@ -260,7 +260,7 @@ export default function Simon({ lang }) {
                         flexShrink: 0,
                     }}>
                         <img
-                            src="/simon-avatar.jpg"
+                            src="/simon-avatar-face.jpg"
                             alt="Simón"
                             style={{ width: 36, height: 36, borderRadius: "50%", objectFit: "cover", border: "1.5px solid #c7d7fa", flexShrink: 0 }}
                             onError={e => { e.currentTarget.style.display = "none"; }}

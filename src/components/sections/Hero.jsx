@@ -5,11 +5,16 @@ import Celebration from "../ui/Celebration";
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
+const CV_FILES = {
+  es: { file: "/CV-SantiagoOcampo.pdf", label: "Descargar CV" },
+  en: { file: "/Resume-SantiagoOcampo.pdf", label: "Download CV" },
+};
+
 export default function Hero({ t, go, lang }) {
   const { count, isMilestone, clearMilestone } = useVisitorCount();
   const [showCelebration, setShowCelebration] = useState(false);
+  const { file, label } = CV_FILES[lang] || CV_FILES.es;
 
-  // Show celebration once milestone is detected
   useEffect(() => {
     if (isMilestone) setShowCelebration(true);
   }, [isMilestone]);
@@ -17,7 +22,6 @@ export default function Hero({ t, go, lang }) {
   return (
     <section id="hero" className="section">
       <div className="section-inner" style={{ maxWidth: 680 }}>
-
         <p style={{
           ...mono, fontSize: "0.63rem", color: "var(--accent)",
           letterSpacing: "0.2em", textTransform: "uppercase",
@@ -27,7 +31,6 @@ export default function Hero({ t, go, lang }) {
           <span style={{ display: "inline-block", width: 14, height: 1, background: "var(--accent)" }} />
           {t.hero.greeting}
         </p>
-
         <h1 style={{
           ...sans, fontWeight: 800,
           fontSize: "clamp(2.6rem, 5vw, 4.5rem)",
@@ -36,7 +39,6 @@ export default function Hero({ t, go, lang }) {
         }}>
           Santiago<br />Ocampo
         </h1>
-
         <p style={{
           ...mono, fontSize: "0.73rem", color: "var(--text-3)",
           letterSpacing: "0.12em", textTransform: "uppercase",
@@ -45,11 +47,11 @@ export default function Hero({ t, go, lang }) {
         }}>
           {t.hero.role}
         </p>
-
         <p style={{ fontSize: "0.95rem", lineHeight: 1.85, color: "var(--text-2)", marginBottom: "2rem" }}>
           {t.hero.description}
         </p>
 
+        {/* CTA buttons */}
         <div className="btn-row" style={{ display: "flex", gap: "0.65rem", flexWrap: "wrap", marginBottom: "3rem" }}>
           <button
             onClick={() => go("projects")}
@@ -67,6 +69,27 @@ export default function Hero({ t, go, lang }) {
           >
             {t.hero.ctaContact}
           </button>
+          <a
+            href={file}
+            download
+            style={{
+              ...mono, fontSize: "0.68rem", letterSpacing: "0.08em",
+              textTransform: "uppercase", fontWeight: 500,
+              background: "transparent", color: "var(--text-3)",
+              border: "1px solid var(--border)",
+              padding: "10px 20px", borderRadius: "4px",
+              cursor: "pointer", transition: "all 0.2s",
+              textDecoration: "none",
+              display: "inline-flex", alignItems: "center", gap: "6px",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--border-2)"; e.currentTarget.style.color = "var(--text)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-3)"; }}
+          >
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1v8M7 9l-3-3M7 9l3-3M1 11h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {label}
+          </a>
         </div>
 
         {/* Stats grid */}
@@ -91,7 +114,7 @@ export default function Hero({ t, go, lang }) {
               </div>
             </div>
           ))}
-        </div>
+        </div> 
 
         {/* Visitor badge */}
         {count !== null && (
@@ -113,7 +136,6 @@ export default function Hero({ t, go, lang }) {
             </p>
           </div>
         )}
-
       </div>
 
       {/* Celebration modal */}
