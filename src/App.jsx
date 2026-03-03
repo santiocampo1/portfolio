@@ -12,7 +12,7 @@ import Education from "./components/sections/Education";
 import Contact from "./components/sections/Contact";
 import Guestbook from "./components/sections/Guestbook";
 import Books from "./components/sections/Books";
-import CVButton from "./components/ui/CVButton";
+import Simon from "./components/ui/Simon";
 
 export default function App() {
   const [lang, setLang] = useState("es");
@@ -85,7 +85,7 @@ export default function App() {
           </footer>
         </main>
       </div>
-      <CVButton lang={lang} />
+      <Simon lang={lang} />
     </>
   );
 }
