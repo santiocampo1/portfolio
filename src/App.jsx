@@ -85,7 +85,7 @@ export default function App() {
           </footer>
         </main>
       </div>
-      <Simon lang={lang} />
+      <Simon lang={lang} /> 
     </>
   );
 }

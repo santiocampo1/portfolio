@@ -114,7 +114,7 @@ export default function Hero({ t, go, lang }) {
               </div>
             </div>
           ))}
-        </div>
+        </div> 
 
         {/* Visitor badge */}
         {count !== null && (
