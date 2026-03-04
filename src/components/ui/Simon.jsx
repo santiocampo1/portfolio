@@ -95,6 +95,8 @@ export default function Simon({ lang }) {
         const newMessages = [...messages, { role: "user", content: userText }];
         setMessages(newMessages);
         setLoading(true);
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 30000);
         try {
             const res = await fetch(`${SUPABASE_URL}/functions/v1/chat-simon`, {
                 method: "POST",
@@ -103,15 +105,23 @@ export default function Simon({ lang }) {
                     "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
                 },
                 body: JSON.stringify({ messages: newMessages }),
+                signal: controller.signal,
             });
+            clearTimeout(timeout);
             const data = await res.json();
             setMessages(prev => [...prev, { role: "assistant", content: data.reply }]);
-        } catch {
+        } catch (err) {
+            clearTimeout(timeout);
+            const isTimeout = err.name === "AbortError";
             setMessages(prev => [...prev, {
                 role: "assistant",
                 content: lang === "es"
-                    ? "Woof... algo salió mal 🐾 Intentá de nuevo."
-                    : "Woof... something went wrong 🐾 Try again.",
+                    ? isTimeout
+                        ? "Woof... tardé demasiado 🐾 Intentá de nuevo."
+                        : "Woof... algo salió mal 🐾 Intentá de nuevo."
+                    : isTimeout
+                        ? "Woof... that took too long 🐾 Try again."
+                        : "Woof... something went wrong 🐾 Try again.",
             }]);
         } finally {
             setLoading(false);
