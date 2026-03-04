@@ -16,7 +16,7 @@ async function fetchBooks(): Promise<string> {
             `${SUPABASE_URL}/rest/v1/books?select=title,author,category&order=category.asc,sort_order.asc`,
             {
                 headers: {
-                    "apikey": SUPABASE_ANON_KEY,
+                    "apikey": SUPABASE_ANON_KEY!,
                     "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
                 },
             }
@@ -48,6 +48,20 @@ async function fetchBooks(): Promise<string> {
     }
 }
 
+function logMessage(message: string): void {
+    const lang = /[áéíóúñ¿¡]/i.test(message) ? "es" : "en";
+    // Fire and forget — no await, no impact on response time
+    fetch(`${SUPABASE_URL}/rest/v1/simon_logs`, {
+        method: "POST",
+        headers: {
+            "apikey": SUPABASE_ANON_KEY!,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message, lang }),
+    });
+}
+
 serve(async (req) => {
     if (req.method === "OPTIONS") {
         return new Response("ok", { headers: corsHeaders });
@@ -76,6 +90,10 @@ serve(async (req) => {
 
         const data = await response.json();
         const text = data.content?.[0]?.text ?? "Woof... something went wrong 🐾";
+
+        // Log the last user message — fire and forget
+        const lastUserMessage = messages[messages.length - 1]?.content;
+        if (lastUserMessage) logMessage(lastUserMessage);
 
         return new Response(JSON.stringify({ reply: text }), {
             headers: { ...corsHeaders, "Content-Type": "application/json" },
