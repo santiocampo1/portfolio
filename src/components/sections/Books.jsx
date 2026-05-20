@@ -32,6 +32,7 @@ function BookCover({ title, author, category }) {
             <img
                 src={coverUrl}
                 alt={title}
+                loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 onError={e => {
                     e.currentTarget.style.display = "none";
