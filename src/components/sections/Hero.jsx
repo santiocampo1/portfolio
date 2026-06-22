@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import useVisitorCount from "../../hooks/useVisitorCount";
 import Celebration from "../ui/Celebration";
 
@@ -9,75 +9,6 @@ const CV_FILES = {
   es: { file: "/CV-SantiagoOcampo.pdf", label: "Descargar CV" },
   en: { file: "/Resume-SantiagoOcampo.pdf", label: "Download CV" },
 };
-
-function VideoEmbed() {
-  const [playing, setPlaying] = useState(false);
-  const containerRef = useRef(null);
-
-  function handlePlay() {
-    const el = containerRef.current;
-    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
-    if (req) {
-      try { req.call(el); } catch { /* algunos navegadores bloquean, seguimos igual */ }
-    }
-    setPlaying(true);
-  }
-
-  return (
-    <div
-      ref={containerRef}
-      style={{
-        position: "relative",
-        width: "100%",
-        maxWidth: 560,
-        aspectRatio: "16 / 9",
-        borderRadius: "10px",
-        overflow: "hidden",
-        border: "1px solid var(--border)",
-        marginBottom: "2.5rem",
-        background: "#000",
-      }}
-    >
-      {!playing ? (
-        <button
-          onClick={handlePlay}
-          style={{
-            position: "absolute", inset: 0,
-            width: "100%", height: "100%",
-            border: "none", cursor: "pointer",
-            padding: 0,
-            backgroundImage: "url(https://img.youtube.com/vi/drUpq8zFmCk/hqdefault.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}
-        >
-          <span style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            width: 56, height: 56, borderRadius: "50%",
-            background: "rgba(0,0,0,0.65)",
-            transition: "background 0.2s, transform 0.2s",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = "rgba(29,78,216,0.85)"; e.currentTarget.style.transform = "scale(1.08)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "rgba(0,0,0,0.65)"; e.currentTarget.style.transform = "scale(1)"; }}
-          >
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-              <path d="M1 1.5v19l18-9.5z" fill="#fff" />
-            </svg>
-          </span>
-        </button>
-      ) : (
-        <iframe
-          src="https://www.youtube.com/embed/drUpq8zFmCk?autoplay=1&playsinline=1"
-          title="Santiago Ocampo — presentación"
-          style={{ width: "100%", height: "100%", border: "none", display: "block" }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-          allowFullScreen
-        />
-      )}
-    </div>
-  );
-}
 
 export default function Hero({ t, go, lang }) {
   const { count, isMilestone, clearMilestone } = useVisitorCount();
@@ -119,7 +50,26 @@ export default function Hero({ t, go, lang }) {
         <p style={{ fontSize: "0.95rem", lineHeight: 1.85, color: "var(--text-2)", marginBottom: "2rem" }}>
           {t.hero.description}
         </p>
-        <VideoEmbed />
+        <div style={{
+          position: "relative",
+          width: "100%",
+          maxWidth: 560,
+          aspectRatio: "16 / 9",
+          borderRadius: "10px",
+          overflow: "hidden",
+          border: "1px solid var(--border)",
+          marginBottom: "2.5rem",
+          background: "var(--bg-subtle)",
+        }}>
+          <iframe
+            src="https://www.youtube.com/embed/drUpq8zFmCk"
+            title="Santiago Ocampo — presentación"
+            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
         {/* CTA buttons */}
         <div className="btn-row" style={{ display: "flex", gap: "0.65rem", flexWrap: "wrap", marginBottom: "3rem" }}>
           <button
