@@ -50,7 +50,26 @@ export default function Hero({ t, go, lang }) {
         <p style={{ fontSize: "0.95rem", lineHeight: 1.85, color: "var(--text-2)", marginBottom: "2rem" }}>
           {t.hero.description}
         </p>
-
+        <div style={{
+          position: "relative",
+          width: "100%",
+          maxWidth: 560,
+          aspectRatio: "16 / 9",
+          borderRadius: "10px",
+          overflow: "hidden",
+          border: "1px solid var(--border)",
+          marginBottom: "2.5rem",
+          background: "var(--bg-subtle)",
+        }}>
+          <iframe
+            src="https://www.youtube.com/embed/drUpq8zFmCk"
+            title="Santiago Ocampo — presentación"
+            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
         {/* CTA buttons */}
         <div className="btn-row" style={{ display: "flex", gap: "0.65rem", flexWrap: "wrap", marginBottom: "3rem" }}>
           <button
