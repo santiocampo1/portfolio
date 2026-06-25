@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useVisitorCount from "../../hooks/useVisitorCount";
 import Celebration from "../ui/Celebration";
-
+import EarthGlobe3D, { CITIES } from "../ui/EarthGlobe3D";
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
@@ -13,14 +13,35 @@ const CV_FILES = {
 export default function Hero({ t, go, lang }) {
   const { count, isMilestone, clearMilestone } = useVisitorCount();
   const [showCelebration, setShowCelebration] = useState(false);
+  const [activeMedia, setActiveMedia] = useState("video"); // 'video' | 'globe'
   const { file, label } = CV_FILES[lang] || CV_FILES.es;
-
   useEffect(() => {
     if (isMilestone) setShowCelebration(true);
   }, [isMilestone]);
 
+  const tabButtonStyle = {
+    flex: 1, position: "relative", zIndex: 1,
+    ...mono, fontSize: "0.66rem", letterSpacing: "0.05em", textTransform: "uppercase",
+    fontWeight: 600, background: "none", border: "none", cursor: "pointer",
+    padding: "9px 14px", borderRadius: "24px",
+    display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+    transition: "color 0.2s",
+  };
+
   return (
     <section id="hero" className="section">
+      <style>{`
+        @keyframes hero-media-fadein {
+          from { opacity: 0; transform: scale(0.985); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes hero-tab-glow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.45); }
+          50%      { box-shadow: 0 0 0 6px rgba(124,58,237,0); }
+        }
+        .hero-media-active { animation: hero-media-fadein 0.35s ease; }
+        .hero-tab-active-glow { animation: hero-tab-glow 2.2s ease-out infinite; border-radius: 24px; }
+      `}</style>
       <div className="section-inner" style={{ maxWidth: 680 }}>
         <p style={{
           ...mono, fontSize: "0.63rem", color: "var(--accent)",
@@ -50,26 +71,103 @@ export default function Hero({ t, go, lang }) {
         <p style={{ fontSize: "0.95rem", lineHeight: 1.85, color: "var(--text-2)", marginBottom: "2rem" }}>
           {t.hero.description}
         </p>
-        <div style={{
-          position: "relative",
-          width: "100%",
-          maxWidth: 560,
-          aspectRatio: "16 / 9",
-          borderRadius: "10px",
-          overflow: "hidden",
-          border: "1px solid var(--border)",
-          marginBottom: "2.5rem",
-          background: "var(--bg-subtle)",
-        }}>
-          <iframe
-            src="https://www.youtube.com/embed/drUpq8zFmCk"
-            title="Santiago Ocampo — presentación"
-            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
-          />
+
+        {/* Toggle Video / Globo 3D */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: activeMedia === "globe" ? "0.6rem" : "1rem" }}>
+          <div style={{
+            width: 300, position: "relative", display: "flex",
+            background: "var(--bg-subtle)", border: "1px solid var(--border)",
+            borderRadius: "30px", padding: "4px",
+          }}>
+            <div style={{
+              position: "absolute", top: 4, left: 4,
+              width: "calc(50% - 4px)", height: "calc(100% - 8px)",
+              background: "#fff", borderRadius: "24px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              transform: activeMedia === "globe" ? "translateX(100%)" : "translateX(0)",
+              transition: "transform 0.3s cubic-bezier(0.4,0,0.2,1)",
+            }} />
+            <button
+              onClick={() => setActiveMedia("video")}
+              className={activeMedia === "video" ? "hero-tab-active-glow" : ""}
+              style={{ ...tabButtonStyle, color: activeMedia === "video" ? "var(--text)" : "var(--text-3)" }}
+            >
+              ▶ {t.hero.tabVideo}
+            </button>
+            <button
+              onClick={() => setActiveMedia("globe")}
+              className={activeMedia === "globe" ? "hero-tab-active-glow" : ""}
+              style={{ ...tabButtonStyle, color: activeMedia === "globe" ? "var(--accent)" : "var(--text-3)" }}
+            >
+              🌐 {t.hero.tabGlobe}
+            </button>
+          </div>
         </div>
+
+        {/* Caption — solo cuando el globo está activo */}
+        {activeMedia === "globe" && (
+          <p style={{
+            ...mono, fontSize: "0.62rem", color: "var(--text-3)",
+            letterSpacing: "0.04em", textAlign: "center", marginBottom: "0.85rem",
+          }}>
+            {t.hero.globeCaption}
+          </p>
+        )}
+
+        {/* Media box — uno u otro */}
+        <div style={{ marginBottom: activeMedia === "globe" ? "0.6rem" : "2.5rem" }}>
+          {activeMedia === "video" ? (
+            <div key="video" className="hero-media-active" style={{
+              position: "relative",
+              aspectRatio: "16 / 9",
+              borderRadius: "10px",
+              overflow: "hidden",
+              border: "1px solid var(--border)",
+              background: "var(--bg-subtle)",
+            }}>
+              <iframe
+                src="https://www.youtube.com/embed/drUpq8zFmCk"
+                title="Santiago Ocampo — presentación"
+                style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div key="globe" className="hero-media-active">
+              <div style={{
+                position: "relative",
+                aspectRatio: "16 / 9",
+                borderRadius: "10px",
+                overflow: "hidden",
+                border: "1px solid var(--border)",
+                background: "#0a0e1a",
+              }}>
+                <EarthGlobe3D />
+              </div>
+              {/* Leyenda de ciudades */}
+              <div style={{
+                display: "flex", flexWrap: "wrap", gap: "0.6rem",
+                justifyContent: "center", marginTop: "0.6rem", marginBottom: "1.9rem",
+              }}>
+                {CITIES.map(city => (
+                  <span key={city.name} style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                    <span style={{
+                      width: 6, height: 6, borderRadius: "50%",
+                      background: `#${city.color.toString(16).padStart(6, "0")}`,
+                      display: "inline-block",
+                    }} />
+                    <span style={{ ...mono, fontSize: "0.55rem", color: "var(--text-4)", letterSpacing: "0.02em" }}>
+                      {city.name}
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* CTA buttons */}
         <div className="btn-row" style={{ display: "flex", gap: "0.65rem", flexWrap: "wrap", marginBottom: "3rem" }}>
           <button

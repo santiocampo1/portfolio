@@ -40,6 +40,9 @@ const t = {
         { value: "C1", label: "Inglés" },
         { value: "∞", label: "Café ☕" },
       ],
+      tabVideo: "Video",
+      tabGlobe: "Globo 3D",
+      globeCaption: "Alcance global — ciudades donde trabajé de forma remota",
     },
     about: {
       eyebrow: "Sobre mí",
@@ -277,6 +280,9 @@ const t = {
         { value: "C1", label: "English" },
         { value: "∞", label: "Coffee ☕" },
       ],
+      tabVideo: "Video",
+      tabGlobe: "3D Globe",
+      globeCaption: "Global reach — cities I've worked from, remotely",
     },
     about: {
       eyebrow: "About",
