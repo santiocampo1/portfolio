@@ -1,4 +1,5 @@
 import Reveal from "../ui/Reveal";
+import ArchitectureDiagram from "../ui/ArchitectureDiagram";
 const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const mono = { fontFamily: "'DM Mono', monospace" };
 
@@ -202,11 +203,20 @@ export default function Projects({ t }) {
                 <p style={{ fontSize: "0.82rem", color: "var(--text-3)", marginBottom: "1.75rem", maxWidth: 480 }}>
                     {p.personalDesc}
                 </p>
-                <div className="proj-grid">
+                <div className="proj-grid" style={{ marginBottom: "3rem" }}>
                     {p.personalItems.map((project, i) => (
                         <PersonalCard key={i} project={project} p={p} />
                     ))}
                 </div>
+                <Reveal>
+                    <div style={pillStyle("#FFFBEB", "#fde68a", "#D97706")}>
+                        <span>{p.archLabel}</span>
+                    </div>
+                </Reveal>
+                <p style={{ fontSize: "0.82rem", color: "var(--text-3)", marginBottom: "1.75rem", maxWidth: 480 }}>
+                    {p.archDesc}
+                </p>
+                <ArchitectureDiagram content={p.architecture} />
             </div>
         </section>
     );
