@@ -16,27 +16,58 @@ A personal portfolio website built with a minimalist design approach. Clean, fas
 - **Responsive layout** — dedicated sidebar for desktop, slide-in topbar for mobile; view switcher always visible on both
 - **Page loader** — custom CSS animation before React mounts, eliminating flash of unstyled content (FOUC)
 - **CV download button** — inline button in the Hero section that serves the Spanish or English PDF depending on the active language
-- **AI Chatbot (Simón)** — floating chat button powered by Claude Haiku; responds as Santiago's dog with full knowledge of his experience, projects, and books
+- **AI Chatbot (Simón)** — floating chat button powered by Claude Haiku; responds as Santiago's dog with full knowledge of his experience, projects, and books, with a hand-drawn animated SVG avatar
+- **3D Earth Globe** — interactive Three.js visualization mapping the real cities Santiago has worked from remotely
+- **Interactive Architecture Diagram** — a React Flow graph of the portfolio's own real system architecture, clickable node by node
 
 ### Sections
 
 #### Professional
 
-| Section        | Description                                                                                        |
-| -------------- | -------------------------------------------------------------------------------------------------- |
-| **Hero**       | Name, role, description, CTA buttons (including CV download), stats grid, and live visitor counter |
-| **About**      | Bio, profile photo, and full tech stack organized by category                                      |
-| **Projects**   | Table of professional projects with stack tags and company                                         |
-| **Experience** | Timeline of professional roles with highlights                                                     |
-| **Education**  | Certifications and academic background                                                             |
-| **Guestbook**  | Public message board backed by Supabase                                                            |
-| **Contact**    | Links to email, LinkedIn, GitHub, and WhatsApp                                                     |
+| Section        | Description                                                                                                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Hero**       | Name, role, description, CTA buttons (including CV download), a Video / 3D Globe toggle, stats grid, and live visitor counter                                                |
+| **About**      | Bio, profile photo, and full tech stack organized by category                                                                                                                |
+| **Projects**   | Professional projects shown as a connected timeline log, a grid of Personal & Freelance projects with live links, and an interactive diagram of this site's own architecture |
+| **Experience** | Timeline of professional roles with highlights                                                                                                                               |
+| **Education**  | Certifications and academic background                                                                                                                                       |
+| **Guestbook**  | Public message board backed by Supabase                                                                                                                                      |
+| **Contact**    | Links to email, LinkedIn, GitHub, and WhatsApp                                                                                                                               |
 
 #### Personal
 
 | Section      | Description                                                               |
 | ------------ | ------------------------------------------------------------------------- |
 | **My Books** | Favorite books organized by category, with cover images from Open Library |
+
+### Hero — Video / 3D Globe Toggle
+
+A pill-shaped switch lets visitors choose between two pieces of media in the same space:
+
+- **Video** — embedded YouTube intro, lazy-loaded
+- **3D Globe** — see below
+
+The inactive "3D Globe" tab carries a persistent subtle violet pulse so the interactive feature is never missed. Switching plays a smooth fade-in transition.
+
+### 3D Earth Globe
+
+An interactive Three.js scene built with real meaning rather than decoration:
+
+- A textured Earth sphere (official three.js example texture, with a graceful color fallback if the asset fails to load)
+- **Real data spikes** at the cities Santiago has lived in or worked remotely from: Santa Fe, Buenos Aires, Orlando, and Lima — each with its own color and a radar-style pulsing ping
+- A directional light slowly orbits the globe, producing a moving day/night terminator
+- Sparse animated starfield for depth
+- **Drag to rotate** via `OrbitControls` (zoom and pan disabled so it doesn't fight page scroll); gentle auto-rotation when idle
+- Pauses its render loop via `IntersectionObserver` whenever scrolled out of view, and fully disposes all Three.js geometries/materials/the renderer on unmount
+
+### Interactive Architecture Diagram
+
+Built with **React Flow**, this is a real, accurate diagram of how the portfolio itself works — not a generic illustration:
+
+- Visitor → React/Vite frontend → Supabase REST API → PostgreSQL, including both Edge Functions (`chat-simon`, `notify-guestbook`) and their external calls to Claude and Resend
+- Click any node to see a plain-language explanation of what that piece does and why it's there
+- Mouse-wheel zoom is disabled on the canvas so it never hijacks page scrolling; zoom is available via on-canvas controls instead
+- All node/edge labels and detail text live in `translations.js`, fully bilingual
 
 ### Guestbook
 
@@ -59,9 +90,17 @@ A personal reading list backed by Supabase, organized into four categories:
 
 Cover images are loaded automatically from the [Open Library Covers API](https://openlibrary.org/dev/docs/api#anchor_covers). If a cover is not found, an elegant placeholder is shown. New books can be added directly from the Supabase dashboard without touching the codebase.
 
+### Projects — Three Layers
+
+The Projects section is split into three distinct, purpose-built views:
+
+- **Professional** — a connected vertical log/timeline of company projects, each with a colored node tied to its company (so Taktiful's three projects visually group together)
+- **Personal & Freelance** — a card grid styled like browser/terminal chrome, showing the real live domain (`hifry.app`, `agrosury.com`) with a direct "Visit" link, or a code-style chip with "View code" for the desktop-only Kaizen app. This very site appears in the grid too, with a self-aware "you're looking at this right now" note instead of a link
+- **Architecture** — the interactive diagram described above
+
 ### Simón — AI Chatbot
 
-A floating chat assistant that lives in the bottom-right corner of the site, personified as Santiago's dog.
+A floating chat assistant that lives in the bottom-right corner of the site, personified as Santiago's dog, with a hand-drawn animated SVG avatar (floppy ears, blinking eyes, and a periodic bark animation with sound-wave lines) replacing a generic icon.
 
 - Powered by **Claude Haiku** via a Supabase Edge Function — the API key never touches the frontend
 - Knows everything about Santiago: experience, projects, tech stack, books, and how the portfolio was built
@@ -76,6 +115,7 @@ A floating chat assistant that lives in the bottom-right corner of the site, per
 - Displayed as a styled badge in the Hero section
 - Returns `—` in localhost to avoid polluting production data
 - Detects milestone visits and triggers a celebration
+- Uses `sessionStorage` to prevent duplicate counts when navigating between views
 
 ---
 
@@ -100,6 +140,8 @@ _Hint: check the visitor counter badge on the Hero section._
 | **React 18**                  | UI framework                                        |
 | **Vite**                      | Build tool and dev server                           |
 | **CSS-in-JS (inline styles)** | Scoped component styling without extra dependencies |
+| **Three.js**                  | 3D Earth globe visualization in the Hero section    |
+| **React Flow**                | Interactive architecture diagram                    |
 | **Plus Jakarta Sans**         | Display / body font                                 |
 | **DM Mono**                   | Monospace font for labels and metadata              |
 
@@ -124,7 +166,7 @@ portfolio/
 ├── public/
 │   ├── favicon.svg
 │   ├── og-image.jpg
-│   ├── simon-avatar.jpg           # Simón's photo — used as chatbot avatar
+│   ├── simon-avatar-face.jpg      # Simón's photo — used in the chat header
 │   ├── CV-SantiagoOcampo.pdf
 │   └── Resume-SantiagoOcampo.pdf
 ├── src/
@@ -135,20 +177,22 @@ portfolio/
 │   │   │   ├── Sidebar.jsx        # Desktop navigation with Pro/Personal switcher
 │   │   │   └── Topbar.jsx         # Mobile navigation with Pro/Personal switcher
 │   │   ├── sections/
-│   │   │   ├── Hero.jsx           # Includes inline CV download button
+│   │   │   ├── Hero.jsx           # CV button, Video / 3D Globe toggle
 │   │   │   ├── About.jsx
-│   │   │   ├── Projects.jsx
+│   │   │   ├── Projects.jsx       # Professional log, Personal/Freelance grid, Architecture diagram
 │   │   │   ├── Experience.jsx
 │   │   │   ├── Education.jsx
 │   │   │   ├── Guestbook.jsx
 │   │   │   ├── Contact.jsx
 │   │   │   └── Books.jsx          # Personal reading list with cover images
 │   │   └── ui/
-│   │       ├── Celebration.jsx    # Milestone confetti modal
-│   │       ├── Simon.jsx          # AI chatbot — floating button + chat window
-│   │       └── Reveal.jsx         # Scroll-triggered fade-in wrapper
+│   │       ├── Celebration.jsx        # Milestone confetti modal
+│   │       ├── Simon.jsx              # AI chatbot — floating button + chat window + SVG dog avatar
+│   │       ├── EarthGlobe3D.jsx       # Three.js 3D globe with real work-city data spikes
+│   │       ├── ArchitectureDiagram.jsx # React Flow diagram of this site's own architecture
+│   │       └── Reveal.jsx             # Scroll-triggered fade-in wrapper
 │   ├── constants/
-│   │   ├── translations.js        # All UI strings in ES and EN
+│   │   ├── translations.js        # All UI strings in ES and EN, including diagram node/edge content
 │   │   ├── countries.js           # Country list and code map for guestbook
 │   │   └── data.js                # Tech stack, nav sections and nav items
 │   ├── hooks/
