@@ -1,64 +1,33 @@
 import Reveal from "../ui/Reveal";
-import PHOTO from "../../assets/photo.jpg";
+import PhotoCard from "../ui/PhotoCard";
+import PHOTO from "../../assets/photo.png";
 import { techStack } from "../../constants/data";
-
-const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-const mono = { fontFamily: "'DM Mono', monospace" };
+import { sans, mono } from "../../styles/typography";
 
 export default function About({ t }) {
   return (
     <section id="about" className="section">
       <div className="section-inner">
-
         <Reveal>
           <p className="section-eyebrow">{t.about.eyebrow}</p>
           <h2 className="section-title">{t.about.title}</h2>
         </Reveal>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "200px 1fr",
-          gap: "2.5rem",
-          alignItems: "start",
-          marginBottom: "3rem",
-        }} className="about-top-cols">
+        <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: "2.5rem", alignItems: "start", marginBottom: "3rem" }} className="about-top-cols">
 
-          {/* Photo */}
+          {/* Photo + caption */}
           <Reveal delay={0.05}>
-            <div style={{ position: "relative" }}>
-              <div style={{
-                width: "100%",
-                aspectRatio: "3 / 4",
-                overflow: "hidden",
-                borderRadius: "16px",
-                display: "flex",
-              }}>
-                <img
-                  src={PHOTO}
-                  alt="Santiago Ocampo"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center 55%",
-                    display: "block",
-                    border: "none",
-                    outline: "none",
-                    transition: "transform 0.5s ease",
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.03)"}
-                  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-                />
-              </div>
-
-              <div style={{ marginTop: "0.85rem" }}>
+            <div>
+              <PhotoCard src={PHOTO} alt="Santiago Ocampo" />
+              <div style={{ marginTop: "calc(0.85rem + 14px)" }}>
                 <p style={{ ...sans, fontWeight: 600, fontSize: "0.85rem", color: "var(--text)", lineHeight: 1.3 }}>
                   Santiago Ocampo
                 </p>
-                <p style={{ ...mono, fontSize: "0.6rem", color: "var(--text-3)", letterSpacing: "0.06em", marginTop: "2px" }}>
-                  📍 Santa Fe, Argentina
-                </p>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "0.5rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "2px", marginTop: "2px" }}>
+                  <span style={{ fontSize: "0.7rem", lineHeight: 1, flexShrink: 0 }}>📍</span>
+                  <span style={{ ...mono, fontSize: "0.6rem", color: "var(--text-3)", letterSpacing: "0.06em" }}>Santa Fe, Argentina</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "0.2rem" }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--success)", flexShrink: 0, animation: "pulse-green 2s infinite" }} />
                   <span style={{ ...mono, fontSize: "0.6rem", color: "var(--success)", letterSpacing: "0.04em" }}>
                     {t.available}
@@ -96,7 +65,6 @@ export default function About({ t }) {
             </div>
           </div>
         </Reveal>
-
       </div>
     </section>
   );
