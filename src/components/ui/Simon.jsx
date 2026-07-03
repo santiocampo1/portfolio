@@ -139,8 +139,8 @@ function SuggestionList({ suggestions, onSend }) {
 // ─── Main component ────────────────────────────────────────────────────────
 
 const SUGGESTIONS = {
-    es: ["¿Cuántos años de experiencia tiene Santiago?", "¿De qué trata Hábitos Atómicos?", "¿Cómo fue construido este portfolio?", "¿Cómo contacto a Santiago?"],
-    en: ["How many years of experience does Santiago have?", "What is Deep Work about?", "How was this portfolio built?", "How can I contact Santiago?"],
+    es: ["¿Cuántos años de experiencia tiene Santiago?", "¿De qué trata Hábitos Atómicos?", "¿Puedo ver el código de este proyecto?", "¿Cómo contacto a Santiago?"],
+    en: ["How many years of experience does Santiago have?", "What is Deep Work about?", "Can I see the code for this project?", "How can I contact Santiago?"],
 };
 
 export default function Simon({ lang }) {
