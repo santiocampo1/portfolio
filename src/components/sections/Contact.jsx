@@ -1,47 +1,32 @@
 import Reveal from "../ui/Reveal";
 
-const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-const mono = { fontFamily: "'DM Mono', monospace" };
-
 export default function Contact({ t }) {
+  const c = t.contact;
   return (
-    <section id="contact" className="section" style={{ borderBottom: "none" }}>
-      <div className="section-inner">
-        <Reveal>
-          <p className="section-eyebrow">{t.contact.eyebrow}</p>
-          <h2 className="section-title">{t.contact.title}</h2>
-          <p style={{ fontSize: "0.92rem", color: "var(--text-2)", lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: 440 }}>
-            {t.contact.description}
-          </p>
-        </Reveal>
-
-        <div className="contact-cols" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}>
-          <Reveal delay={0.08}>
-            <a href={`mailto:${t.contact.cta}`}
-              style={{ ...sans, fontWeight: 700, fontSize: "clamp(0.95rem, 1.5vw, 1.2rem)", color: "var(--accent)", letterSpacing: "-0.02em", borderBottom: "2px solid var(--accent)", paddingBottom: "2px", display: "block", width: "fit-content", transition: "opacity 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
-              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-            >
-              {t.contact.cta} ↗
+    <section id="contact" className="section">
+      <Reveal>
+        <div className="contact-card">
+          <div style={{ position: "relative" }}>
+            <p className="section-eyebrow" style={{ color: "#8FA6FF" }}>{c.eyebrow}</p>
+            <h2 style={{ fontSize: "clamp(2.6rem, 7vw, 4.8rem)", fontWeight: 800, letterSpacing: "-0.06em", lineHeight: 0.95, marginBottom: "1rem" }}>
+              {c.title}
+            </h2>
+            <p style={{ color: "#B4BBC9", fontSize: "1rem", lineHeight: 1.65, maxWidth: "46ch", marginBottom: "1.75rem" }}>{c.description}</p>
+            <a href={`mailto:${c.cta}`} className="btn btn-primary" style={{ fontSize: "0.95rem", padding: "14px 20px", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {c.cta} ↗
             </a>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.12}>
-            <div>
-              {t.contact.links.map(({ icon, label, value, href }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="contact-link">
-                  <div className="c-icon">{icon}</div>
-                  <div>
-                    <p className="c-label">{label}</p>
-                    <p className="c-value">{value}</p>
-                  </div>
-                  <span className="c-arrow">↗</span>
-                </a>
-              ))}
-            </div>
-          </Reveal>
+          <div className="contact-links">
+            {c.links.map(({ label, value, href }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="contact-link">
+                <span className="c-label">{label}<span aria-hidden="true">↗</span></span>
+                <span className="c-value">{value}</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

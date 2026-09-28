@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import translations from "../../constants/translations";
 
-const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-const mono = { fontFamily: "'DM Mono', monospace" };
+const sans = { fontFamily: "'Geist', system-ui, sans-serif" };
+const mono = { fontFamily: "'Geist Mono', ui-monospace, monospace" };
 
 const COLORS = ["#1D4ED8", "#60A5FA", "#111111", "#FBBF24", "#34D399", "#F87171", "#A78BFA"];
 

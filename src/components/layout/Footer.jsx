@@ -12,8 +12,7 @@ export default function Footer({ viewSource }) {
     const text = { ...mono, fontSize: "0.62rem", color: "var(--text-4)", letterSpacing: "0.08em" };
     return (
         <footer style={{
-            padding: "1.25rem 3rem",
-            borderTop: "1px solid var(--border)",
+            padding: "2.5rem 0 2rem",
             display: "flex", justifyContent: "space-between",
             alignItems: "center", flexWrap: "wrap", gap: "0.5rem",
         }}>

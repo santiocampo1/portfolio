@@ -5,8 +5,8 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-const mono = { fontFamily: "'DM Mono', monospace" };
+const sans = { fontFamily: "'Geist', system-ui, sans-serif" };
+const mono = { fontFamily: "'Geist Mono', ui-monospace, monospace" };
 
 const COLORS = {
     client: "#1D4ED8",
@@ -150,12 +150,12 @@ export default function ArchitectureDiagram({ content }) {
 
     return (
         <div>
-            <p style={{ ...mono, fontSize: "0.62rem", color: "var(--text-3)", letterSpacing: "0.03em", marginBottom: "0.75rem" }}>
-                {content.hint}
+            <p style={{ ...mono, fontSize: "0.72rem", color: "var(--bp-mut)", letterSpacing: "0.03em", marginBottom: "0.75rem" }}>
+                → {content.hint}
             </p>
-            <div style={{
-                height: 520, borderRadius: "10px", border: "1px solid var(--border)",
-                overflow: "hidden", background: "var(--bg-subtle)",
+            <div className="arch-canvas" style={{
+                borderRadius: "10px", border: "1.5px solid var(--bp-line)",
+                overflow: "hidden", background: "rgba(4,14,30,0.35)",
             }}>
                 <ReactFlow
                     nodes={nodes}
@@ -170,7 +170,7 @@ export default function ArchitectureDiagram({ content }) {
                     panOnScroll={false}
                     proOptions={{ hideAttribution: true }}
                 >
-                    <Background color="var(--border)" gap={18} size={1} />
+                    <Background color="rgba(230,238,251,0.18)" gap={18} size={1} />
                     <Controls showInteractive={false} />
                 </ReactFlow>
             </div>

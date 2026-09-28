@@ -1,8 +1,8 @@
 import Reveal from "../ui/Reveal";
 import useBooks from "../../hooks/useBooks";
 
-const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-const mono = { fontFamily: "'DM Mono', monospace" };
+const sans = { fontFamily: "'Geist', system-ui, sans-serif" };
+const mono = { fontFamily: "'Geist Mono', ui-monospace, monospace" };
 
 const CATEGORY_COLORS = {
     personal: { bg: "#EFF3FF", border: "#c7d7fa", text: "#1D4ED8" },

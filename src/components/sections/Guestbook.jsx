@@ -3,8 +3,8 @@ import useGuestbook from "../../hooks/useGuestbook";
 import Reveal from "../ui/Reveal";
 import { COUNTRIES, CODE_MAP } from "../../constants/countries";
 
-const sans = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
-const mono = { fontFamily: "'DM Mono', monospace" };
+const sans = { fontFamily: "'Geist', system-ui, sans-serif" };
+const mono = { fontFamily: "'Geist Mono', ui-monospace, monospace" };
 
 
 function FlagImg({ code, size = 20 }) {
@@ -125,7 +125,7 @@ function CountrySelect({ value, onChange, placeholder, focused, onFocus, onBlur 
                     textAlign: "left",
                     transition: "border 0.2s, background 0.2s, box-shadow 0.2s",
                     boxShadow: (open || focused) ? "0 0 0 3px rgba(29,78,216,0.08)" : "none",
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontFamily: "'Geist', system-ui, sans-serif",
                     display: "flex",
                     alignItems: "center",
                     gap: "8px",
@@ -173,7 +173,7 @@ function CountrySelect({ value, onChange, placeholder, focused, onFocus, onBlur 
                                 color: "var(--text)",
                                 background: value === cname ? "var(--accent-bg)" : "transparent",
                                 transition: "background 0.1s",
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                fontFamily: "'Geist', system-ui, sans-serif",
                             }}
                             onMouseEnter={e => { if (value !== cname) e.currentTarget.style.background = "var(--bg-subtle)"; }}
                             onMouseLeave={e => { if (value !== cname) e.currentTarget.style.background = "transparent"; }}
@@ -221,7 +221,7 @@ export default function Guestbook({ t, lang }) {
         outline: "none",
         transition: "border 0.2s, background 0.2s, box-shadow 0.2s",
         boxSizing: "border-box",
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        fontFamily: "'Geist', system-ui, sans-serif",
         boxShadow: focused === field ? "0 0 0 3px rgba(29,78,216,0.08)" : "none",
     });
 

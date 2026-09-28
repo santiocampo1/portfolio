@@ -83,6 +83,12 @@ PROJECTS:
 5. International Payments System (Bizland Tech) — Backend for international transactions with Western Union and Pago Fácil. Security and validation.
    Stack: Java, Spring Boot, MySQL, AWS.
 
+6. Sury (freelance, for Agrosury, 2026) — WhatsApp bot + web dashboard for farmers. The farmer sends a voice note or text ("3 calves were born today"); audio is transcribed with Whisper, Claude extracts the structured data, and it is saved to the database, synced to the farmer's Google Sheets and shown in a dashboard with metrics (livestock, crops, rainfall, finances). Also has animal health, livestock market, meat-packer and foreign trade modules, and Excel export.
+   Stack: React, TypeScript, Node.js, Express, Prisma, Claude API, WhatsApp Cloud API, Recharts.
+
+7. Brian Borra (freelance, 2026) — News site for a sports journalist from Santa Fe (brianwborra.com). The journalist publishes articles from his own admin panel; the site shows live matches, fixtures and standings for Liga Profesional and Primera Nacional (ESPN data cached through Supabase Edge Functions), youth, reserve and women's sections for Colón and Unión, rotating sponsor banners and a visitor counter. Installable as an app (PWA).
+   Stack: React, TypeScript, Tailwind CSS, TanStack Query, Supabase, Edge Functions.
+
 ---
 
 THIS PORTFOLIO:

@@ -1,13 +1,14 @@
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { CITIES } from "../../constants/data";
 
-export const CITIES = [
-    { name: "Santa Fe", lat: -31.62, lng: -60.70, color: 0x7c3aed, height: 0.20 },
-    { name: "Buenos Aires", lat: -34.60, lng: -58.38, color: 0x1d4ed8, height: 0.32 },
-    { name: "Orlando", lat: 28.54, lng: -81.38, color: 0xf59e0b, height: 0.26 },
-    { name: "Lima", lat: -12.05, lng: -77.04, color: 0x0d9488, height: 0.24 },
-];
+// En contenedores angostos (tarjeta vertical del bento) la cámara se aleja
+// para que el globo entre completo a lo ancho
+function cameraDistance(aspect) {
+    const halfFov = (42 / 2) * (Math.PI / 180);
+    return aspect >= 1 ? 3.2 : Math.max(3.2, 1.2 / (Math.tan(halfFov) * aspect));
+}
 
 function latLngToVector3(lat, lng, radius) {
     const phi = (90 - lat) * (Math.PI / 180);
@@ -34,7 +35,7 @@ export default function EarthGlobe3D() {
         // ─── Scene ──────────────────────────────────────────────────────
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-        camera.position.set(0, 0.2, 3.2);
+        camera.position.set(0, 0.2, 3.2).setLength(cameraDistance(width / height));
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -166,6 +167,7 @@ export default function EarthGlobe3D() {
             height = container.clientHeight;
             if (width === 0 || height === 0) return;
             camera.aspect = width / height;
+            camera.position.setLength(cameraDistance(camera.aspect));
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         });

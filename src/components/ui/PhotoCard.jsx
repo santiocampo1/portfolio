@@ -25,7 +25,7 @@ const FLEE_FORCE = 38;
 const FLEE_EASE = "transform 0.45s cubic-bezier(0.34,1.56,0.64,1)";
 const FLEE_IDENTITY = "translate(0,0) rotate(0deg) scale(1)";
 
-export default function PhotoCard({ src, alt }) {
+export default function PhotoCard({ src, alt, fill = false, radius = 16 }) {
     const cardRef = useRef(null);
     const shineRef = useRef(null);
     const iconRefs = useRef([]);
@@ -139,7 +139,7 @@ export default function PhotoCard({ src, alt }) {
     return (
         <>
             <style>{PHOTO_CSS}</style>
-            <div ref={cardRef} className="photo-card" style={{ position: "relative", width: "100%", borderRadius: "16px", willChange: "transform" }}>
+            <div ref={cardRef} className="photo-card" style={{ position: "relative", width: "100%", height: fill ? "100%" : undefined, borderRadius: radius, willChange: "transform" }}>
                 {CORNER_ICONS.map(({ emoji, label, pos }, i) => (
                     <div
                         key={label}
@@ -159,12 +159,12 @@ export default function PhotoCard({ src, alt }) {
                         {emoji}
                     </div>
                 ))}
-                <div style={{ width: "100%", aspectRatio: "3 / 4", borderRadius: "16px", overflow: "hidden", position: "relative" }}>
+                <div style={{ width: "100%", height: fill ? "100%" : undefined, aspectRatio: fill ? undefined : "3 / 4", borderRadius: radius, overflow: "hidden", position: "relative" }}>
                     <img
                         src={src} alt={alt}
                         style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 55%", display: "block" }}
                     />
-                    <div ref={shineRef} style={{ position: "absolute", inset: 0, opacity: 0, transition: "opacity 0.1s", pointerEvents: "none", borderRadius: "16px" }} />
+                    <div ref={shineRef} style={{ position: "absolute", inset: 0, opacity: 0, transition: "opacity 0.1s", pointerEvents: "none", borderRadius: radius }} />
                 </div>
             </div>
         </>

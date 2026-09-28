@@ -161,6 +161,16 @@ export default function Simon({ lang }) {
         return () => { document.body.style.overflow = ""; };
     }, [open]);
 
+    // La tarjeta de Simón del hero abre el chat con una pregunta ya enviada
+    useEffect(() => {
+        function onOpen(e) {
+            setOpen(true);
+            if (e.detail?.question) send(e.detail.question);
+        }
+        window.addEventListener("simon:open", onOpen);
+        return () => window.removeEventListener("simon:open", onOpen);
+    }, [send]);
+
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, loading]);

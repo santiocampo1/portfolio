@@ -1,8 +1,5 @@
 import Reveal from "../ui/Reveal";
-import PhotoCard from "../ui/PhotoCard";
-import PHOTO from "../../assets/photo.png";
 import { techStack } from "../../constants/data";
-import { sans, mono } from "../../styles/typography";
 
 export default function About({ t }) {
   return (
@@ -13,51 +10,39 @@ export default function About({ t }) {
           <h2 className="section-title">{t.about.title}</h2>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: "2.5rem", alignItems: "start", marginBottom: "3rem" }} className="about-top-cols">
-
-          {/* Photo + caption */}
-          <Reveal delay={0.05}>
-            <div>
-              <PhotoCard src={PHOTO} alt="Santiago Ocampo" />
-              <div style={{ marginTop: "calc(0.85rem + 14px)" }}>
-                <p style={{ ...sans, fontWeight: 600, fontSize: "0.85rem", color: "var(--text)", lineHeight: 1.3 }}>
-                  Santiago Ocampo
-                </p>
-                <div style={{ display: "flex", alignItems: "center", gap: "2px", marginTop: "2px" }}>
-                  <span style={{ fontSize: "0.7rem", lineHeight: 1, flexShrink: 0 }}>📍</span>
-                  <span style={{ ...mono, fontSize: "0.6rem", color: "var(--text-3)", letterSpacing: "0.06em" }}>Santa Fe, Argentina</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "0.2rem" }}>
-                  <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--success)", flexShrink: 0, animation: "pulse-green 2s infinite" }} />
-                  <span style={{ ...mono, fontSize: "0.6rem", color: "var(--success)", letterSpacing: "0.04em" }}>
-                    {t.available}
-                  </span>
-                </div>
-              </div>
+        <div className="about-cols" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", alignItems: "stretch" }}>
+          <Reveal delay={0.05} style={{ height: "100%" }}>
+            <div className="card" style={{ height: "100%", padding: "clamp(1.5rem, 3vw, 2rem)" }}>
+              {t.about.bio.map((p, i) => (
+                <p key={i} style={{ fontSize: "0.98rem", lineHeight: 1.75, color: "var(--text-2)", marginBottom: i < t.about.bio.length - 1 ? "1rem" : 0 }}>{p}</p>
+              ))}
             </div>
           </Reveal>
 
-          {/* Bio */}
-          <div>
-            {t.about.bio.map((p, i) => (
-              <Reveal key={i} delay={0.05 + i * 0.07}>
-                <p style={{ fontSize: "0.92rem", lineHeight: 1.85, color: "var(--text-2)", marginBottom: "1rem" }}>{p}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.1} style={{ height: "100%" }}>
+            <div className="card" style={{ height: "100%", padding: 10, display: "flex", flexDirection: "column" }}>
+              <div style={{ position: "relative", aspectRatio: "16 / 9", borderRadius: 14, overflow: "hidden", background: "var(--bg)" }}>
+                <iframe
+                  src="https://www.youtube.com/embed/drUpq8zFmCk"
+                  title="Santiago Ocampo — presentación"
+                  style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen loading="lazy"
+                />
+              </div>
+              <p className="card-label" style={{ padding: "12px 8px 4px" }}>▶ {t.about.videoTitle}</p>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Stack */}
         <Reveal delay={0.15}>
-          <div style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}>
-            <p style={{ ...mono, fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-4)", marginBottom: "1.25rem" }}>
-              {t.about.stackTitle}
-            </p>
+          <div className="card" style={{ marginTop: 12, padding: "clamp(1.5rem, 3vw, 2rem)" }}>
+            <p className="card-label" style={{ marginBottom: "1.25rem" }}>{t.about.stackTitle}</p>
             <div className="stack-cols" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }}>
               {Object.entries(techStack).map(([cat, items]) => (
                 <div key={cat}>
-                  <p className="stack-group-label">{t.about.categories[cat]}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
+                  <p style={{ fontSize: "0.9rem", fontWeight: 700, letterSpacing: "-0.01em", marginBottom: "0.6rem" }}>{t.about.categories[cat]}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
                     {items.map(tech => <span key={tech} className="tag">{tech}</span>)}
                   </div>
                 </div>
