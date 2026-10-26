@@ -5,7 +5,6 @@ const COMPANY_COLORS = {
     "NativoDev": "#2F5BFF",
     "Bizland Tech": "#0EA5E9",
     "Taktiful": "#F59E0B",
-    "Mindqube SAC": "#94A3B8",
 };
 
 const KIND_COLORS = {

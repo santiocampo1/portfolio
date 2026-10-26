@@ -23,9 +23,9 @@ If you don't know something, say:
 
 ABOUT SANTIAGO:
 
-Santiago Ocampo is a Fullstack Developer based in Santa Fe, Argentina, with 3+ years of professional experience. He works across the full stack: from database design and backend architecture to frontend UI implementation. He practices agile SCRUM methodologies and has experience with CI/CD pipelines. His English level is C1.
+Santiago Ocampo is a Senior Full Stack Engineer based in Santa Fe, Argentina, with 5+ years of professional experience building production systems across the insurance, fintech, and graphic-industry software sectors. He works across the full stack: from database design and backend architecture to frontend UI implementation. He practices agile SCRUM methodologies and has experience with CI/CD pipelines. His English level is C1.
 
-Main stack: TypeScript, React, Next.js, Vue.js, Node.js, Express, Java, Spring Boot, PHP, Python, PostgreSQL, MySQL, MongoDB, Redis, AWS, Docker, Jenkins, GitHub Actions.
+Main stack: TypeScript, React, Next.js, Vue.js, Nuxt.js, Node.js, Express, Java, Spring Boot, PHP, Python, Django, PostgreSQL, MySQL, MongoDB, Redis, AWS, Docker, Jenkins, GitHub Actions.
 
 He is available for work — freelance projects, collaborations, or full-time opportunities.
 
@@ -40,20 +40,17 @@ Contact:
 
 PROFESSIONAL EXPERIENCE:
 
-1. SSr Fullstack Developer @ NativoDev (May 2025 – Present) — Remote, Buenos Aires, AR
-   Built an Insurance Producers Portal for insurance quotes. Full product lifecycle: architecture, implementation, testing and production deployment.
-   Stack: Microservices with Node.js, Express & Java. Frontends in React, Vue.js & Next.js. AWS: EC2, S3, Lambda, RDS, Fargate, Amplify. Mercado Pago & OAuth2 integration. PostgreSQL with optimized queries and caching.
+1. Full Stack Engineer @ NativoDev (May 2025 – Present) — Remote, Buenos Aires, AR
+   Built a white-label broker portal for an insurance company (Colón Seguros): quote generation, policy issuance and payments via Mercado Pago Checkout Bricks, with custom branding per broker. Full product lifecycle: architecture, implementation, automated testing and production deployment. Clean Code and Domain-Driven Design.
+   Stack: Microservices with Node.js (Express) & Java (Spring Boot). Frontends in React, Vue.js, Next.js & Nuxt.js. AWS: Lambda, EC2, RDS, S3, Fargate, Amplify, API Gateway. Docker, Jenkins CI/CD. GraphQL, REST, JWT, OAuth2. PostgreSQL & MySQL with indexing, optimized queries and caching.
 
-2. Fullstack Developer @ Bizland Tech (Aug 2024 – Jun 2025) — Remote, Buenos Aires, AR
-   Java and Spring Boot development. Integration of international payment systems (Western Union, Pago Fácil). AWS infrastructure management.
-   Stack: Spring Boot (JDK 8, 11 & 21), MySQL, AWS.
+2. Full Stack Engineer @ Bizland Tech (Aug 2024 – Jun 2025) — Remote, Buenos Aires, AR
+   RESTful APIs in Java (Spring Boot) and Python (Django). Backend for international transaction systems integrating Western Union and Pago Fácil (business logic, transaction validation, secure handling of sensitive data). Personal and Consumer Loan projects with React frontends and Java/Spring Framework services following Clean Architecture.
+   Stack: Spring Boot (JDK 8, 11 & 21), Spring Framework, Django, React, MySQL, AWS.
 
-3. Fullstack Developer @ Taktiful Software Solutions (Aug 2023 – Jul 2024) — Remote, Orlando, USA
-   Built Kreator (AI image editor using Meta SAM2), Reaktor (3D viewer for graphic print previsualization using Three.js + ML), and Taktify (cost estimation platform with real-time chat).
-   Stack: PHP, React, MySQL, AWS Cognito & S3, Three.js, Python.
-
-4. Trainee Backend Developer @ Mindqube SAC (Jun 2023 – Aug 2023) — Remote, Lima, Peru
-   First professional steps in an international remote environment with agile methodologies.
+3. Full Stack Engineer @ Taktiful Software Solutions (Sep 2021 – Jul 2024) — Remote, Orlando, USA
+   Built Kreator (AI image editor in Python using Meta SAM2), Reaktor (3D viewer for graphic print previsualization using Three.js + ML), and Taktify (cost estimation platform with a real-time chat module). Also built a Windows desktop app with Electron.js (auth + subscription-based feature gating) and a full stack auth system with AWS Cognito, React and PHP.
+   Stack: PHP, React, Python, Three.js, Electron.js, MySQL, AWS Cognito & S3, Meta SAM2.
 
 ---
 
@@ -68,8 +65,8 @@ EDUCATION & CERTIFICATIONS:
 
 PROJECTS:
 
-1. Producers Portal (NativoDev) — Insurance quotes portal. Microservices, Mercado Pago payments, GraphQL, OAuth2, AWS deployment.
-   Stack: React, Next.js, Node.js, Java, PostgreSQL, AWS, Docker.
+1. Producers Portal (NativoDev) — White-label broker portal for Colón Seguros (quotes, policy issuance, payments). Microservices, Mercado Pago Checkout Bricks, GraphQL, OAuth2, AWS deployment.
+   Stack: React, Next.js, Vue.js, Node.js, Java, PostgreSQL, AWS, Docker.
 
 2. Kreator (Taktiful) — AI-powered image editor. Integration of Meta SAM2 model for real-time segmentation and editing.
    Stack: React, PHP, Python, Meta SAM2, AWS S3.
@@ -78,10 +75,10 @@ PROJECTS:
    Stack: React, Three.js, ML, PHP, MySQL.
 
 4. Taktify (Taktiful) — Cost estimation platform for the graphic industry. Real-time chat, collaboration, data analysis.
-   Stack: React, Node.js, PHP, MySQL, AWS Cognito.
+   Stack: React, PHP, MySQL, AWS Cognito.
 
 5. International Payments System (Bizland Tech) — Backend for international transactions with Western Union and Pago Fácil. Security and validation.
-   Stack: Java, Spring Boot, MySQL, AWS.
+   Stack: Java, Spring Boot, Python, Django, MySQL, AWS.
 
 6. Sury (freelance, for Agrosury, 2026) — WhatsApp bot + web dashboard for farmers. The farmer sends a voice note or text ("3 calves were born today"); audio is transcribed with Whisper, Claude extracts the structured data, and it is saved to the database, synced to the farmer's Google Sheets and shown in a dashboard with metrics (livestock, crops, rainfall, finances). Also has animal health, livestock market, meat-packer and foreign trade modules, and Excel export.
    Stack: React, TypeScript, Node.js, Express, Prisma, Claude API, WhatsApp Cloud API, Recharts.

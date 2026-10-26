@@ -54,7 +54,7 @@ The inactive "3D Globe" tab carries a persistent subtle violet pulse so the inte
 An interactive Three.js scene built with real meaning rather than decoration:
 
 - A textured Earth sphere (official three.js example texture, with a graceful color fallback if the asset fails to load)
-- **Real data spikes** at the cities Santiago has lived in or worked remotely from: Santa Fe, Buenos Aires, Orlando, and Lima — each with its own color and a radar-style pulsing ping
+- **Real data spikes** at the cities Santiago has lived in or worked remotely from: Santa Fe, Buenos Aires, and Orlando — each with its own color and a radar-style pulsing ping
 - A directional light slowly orbits the globe, producing a moving day/night terminator
 - Sparse animated starfield for depth
 - **Drag to rotate** via `OrbitControls` (zoom and pan disabled so it doesn't fight page scroll); gentle auto-rotation when idle

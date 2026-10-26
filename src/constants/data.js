@@ -1,6 +1,6 @@
 export const techStack = {
-  frontend: ["React", "Next.js", "Vue.js", "TypeScript", "Three.js", "HTML / CSS"],
-  backend: ["Node.js", "Express", "Java", "Spring Boot", "PHP", "Python", "REST / GraphQL"],
+  frontend: ["React", "Next.js", "Vue.js", "Nuxt.js", "TypeScript", "Three.js", "HTML / CSS"],
+  backend: ["Node.js", "Express", "Java", "Spring Boot", "PHP", "Python", "Django", "REST / GraphQL"],
   data: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
   devops: ["AWS", "Docker", "Jenkins", "GitHub Actions", "CI/CD"],
 };
@@ -9,7 +9,6 @@ export const CITIES = [
   { name: "Santa Fe", lat: -31.62, lng: -60.70, color: 0x7c3aed, height: 0.20 },
   { name: "Buenos Aires", lat: -34.60, lng: -58.38, color: 0x2f5bff, height: 0.32 },
   { name: "Orlando", lat: 28.54, lng: -81.38, color: 0xf59e0b, height: 0.26 },
-  { name: "Lima", lat: -12.05, lng: -77.04, color: 0x0d9488, height: 0.24 },
 ];
 
 export const NAV_SECTIONS = [
